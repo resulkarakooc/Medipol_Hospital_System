@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,7 +20,7 @@ namespace Medipol_Hospital
             InitializeComponent();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) //linkLabel ile yeni kullanıcı oluştur
         {
             Form2 form2 = new Form2();
             form2.Show();
@@ -31,7 +29,7 @@ namespace Medipol_Hospital
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1 != null || textBox2 != null)
+            if (textBox1 != null || textBox2 != null) //boş mu kontrol et
             {
                 
                 //if(textBox1.Text == "61030403940" && textBox2.Text =="resul" )
@@ -67,5 +65,12 @@ namespace Medipol_Hospital
                 MessageBox.Show("Tüm Alanları Doldurunuz");
             }
         }
+
+        private void button2_Click(object sender, EventArgs e) //kapat
+        {
+            Application.Exit();
+        }
+
+       
     }
 }

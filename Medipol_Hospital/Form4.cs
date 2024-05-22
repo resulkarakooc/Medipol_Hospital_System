@@ -1,4 +1,5 @@
 ﻿using Medipol_Hospital.Concrete;
+using Medipol_Hospital.Cryptography;
 using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,48 +18,49 @@ namespace Medipol_Hospital
     {
         Context c;
         PatientManager patientManager = new PatientManager();//nesne türet ve içindeki methotlara eriş
-        
+
         public Form4()
         {
             InitializeComponent();
-            
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
             //nesne türet ve içindeki methotlara eriş
             c = new Context();
-            
-            groupBox2.Visible = false;
-            groupBox3.Visible = false;
+
+            groupListDoctor.Visible = false;
             label6.Text = Session.sessionId.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e) // Yeni Randevu
         {
 
-            groupBox4.Visible = true;
-            groupBox3.Visible = false;
-            groupBox2.Visible = false;
-            groupBox6.Visible = false;
-            
 
 
-            comboBox1.Items.Clear();
-            // Doktorları ListBox'a ekleme
-            foreach (var doktor in patientManager.GetDoctorAll())
-            {
-                comboBox1.Items.Add(doktor.Name);
-            }
+            comboBox1.DataSource = c.Doctors.ToList();
+            comboBox1.DisplayMember = "Name";
+            comboBox1.ValueMember = "doctorID";
+
+            groupNewAppointment.Visible = true;
+            groupListDoctor.Visible = false;
+            groupListCurrent.Visible = false;
+
+            //comboBox1.Items.Clear();
+            //// Doktorları ListBox'a ekleme
+            //foreach (var doktor in patientManager.GetDoctorAll())
+            //{
+            //    comboBox1.Items.Add(doktor.Name);
+            //}
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            groupBox3.Visible = true;
-            groupBox4.Visible = false;
-            groupBox2.Visible = false;
-            groupBox6.Visible = false;
+            groupListDoctor.Visible = true;
+            groupNewAppointment.Visible = false;
+
+            groupListCurrent.Visible = false;
 
             listBox1.Items.Clear();
             foreach (var x in patientManager.GetDoctorAll())
@@ -70,12 +72,13 @@ namespace Medipol_Hospital
         private void button5_Click(object sender, EventArgs e)
         {
 
+            Doctors selectdoctor = (Doctors)comboBox1.SelectedItem;
 
             Appointment meet = new Appointment()
             {
                 appinmentTime = dateTimePicker1.Value,
                 p_ID = Session.sessionId,
-                doctorID = comboBox1.SelectedIndex,
+                doctorID = selectdoctor.doctorID,
 
             };
             if (!c.Appointments.Any(x => x.appinmentTime == meet.appinmentTime))
@@ -87,9 +90,6 @@ namespace Medipol_Hospital
             {
                 MessageBox.Show("Randevu Dolu");
             }
-
-
-
 
         }
 
@@ -103,20 +103,22 @@ namespace Medipol_Hospital
             Form1 form1 = new Form1();
             form1.Show();
             this.Hide();
-            
+
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //mevcut randevu listesi
         {
+            List<Appointment> currnetapp = patientManager.GetCurrentAppt(Session.sessionId); //method ile randevular getirildi oturumu açık olan hastanın
 
-            //groupBox4.Visible = false;
-            //groupBox3.Visible = false;
-            //groupBox2.Visible = false;
-            //groupBox5.Visible = false;
-            groupBox6.Visible = true;
+            dataGridView1.DataSource = currnetapp; //getirilen liste dataGridView'e aktarıldı
 
-            dataGridView1.DataSource=  c.Appointments.ToList();
+            groupNewAppointment.Visible = false;
+            groupListDoctor.Visible = false;
+            groupListCurrent.Visible = true;
+            
 
         }
+
+
     }
 }

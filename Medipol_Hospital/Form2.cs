@@ -35,7 +35,7 @@ namespace Medipol_Hospital
             if (textBox1 != null && textBox2 != null && textBox3 != null && textBox4 != null && textBox5 != null)
             {
 
-                string hashpass = ComputeSha256Hash(textBox4.Text);
+                string hashpass = Sha256Converter.ComputeSha256Hash(textBox4.Text); /*Hashleme*/
 
                 if (comboBox1.SelectedIndex == 0)
                 {
@@ -136,23 +136,7 @@ namespace Medipol_Hospital
 
 
         //Hashleme
-        public static string ComputeSha256Hash(string rawData)
-        {
-            // Create a SHA256
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                // ComputeHash - returns byte array
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
-
-                // Convert byte array to a string
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
+        
 
         private void Form2_Load(object sender, EventArgs e)
         {

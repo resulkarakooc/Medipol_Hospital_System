@@ -36,11 +36,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupListDoctor = new System.Windows.Forms.GroupBox();
+            this.groupNewAppointment = new System.Windows.Forms.GroupBox();
+            this.groupListCurrent = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,6 +47,7 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -57,9 +56,9 @@
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.groupListDoctor.SuspendLayout();
+            this.groupNewAppointment.SuspendLayout();
+            this.groupListCurrent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
@@ -136,61 +135,41 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // groupBox2
+            // groupListDoctor
             // 
-            this.groupBox2.Location = new System.Drawing.Point(276, 78);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(565, 320);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Yeni Randevu";
-            this.groupBox2.Visible = false;
+            this.groupListDoctor.Controls.Add(this.listBox1);
+            this.groupListDoctor.Location = new System.Drawing.Point(288, 78);
+            this.groupListDoctor.Name = "groupListDoctor";
+            this.groupListDoctor.Size = new System.Drawing.Size(633, 320);
+            this.groupListDoctor.TabIndex = 4;
+            this.groupListDoctor.TabStop = false;
+            this.groupListDoctor.Text = "DoktorListesi";
             // 
-            // groupBox3
+            // groupNewAppointment
             // 
-            this.groupBox3.Controls.Add(this.listBox1);
-            this.groupBox3.Location = new System.Drawing.Point(282, 78);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(633, 320);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "DoktorListesi";
+            this.groupNewAppointment.Controls.Add(this.dateTimePicker1);
+            this.groupNewAppointment.Controls.Add(this.label4);
+            this.groupNewAppointment.Controls.Add(this.label3);
+            this.groupNewAppointment.Controls.Add(this.comboBox1);
+            this.groupNewAppointment.Controls.Add(this.comboBox3);
+            this.groupNewAppointment.Controls.Add(this.label2);
+            this.groupNewAppointment.Controls.Add(this.button5);
+            this.groupNewAppointment.Location = new System.Drawing.Point(288, 78);
+            this.groupNewAppointment.Name = "groupNewAppointment";
+            this.groupNewAppointment.Size = new System.Drawing.Size(645, 315);
+            this.groupNewAppointment.TabIndex = 0;
+            this.groupNewAppointment.TabStop = false;
+            this.groupNewAppointment.Text = "Yeni Randevu";
             // 
-            // listBox1
+            // groupListCurrent
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(35, 58);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(545, 148);
-            this.listBox1.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.groupBox6);
-            this.groupBox4.Controls.Add(this.dateTimePicker1);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.comboBox1);
-            this.groupBox4.Controls.Add(this.comboBox3);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.button5);
-            this.groupBox4.Location = new System.Drawing.Point(270, 78);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(645, 315);
-            this.groupBox4.TabIndex = 0;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Yeni Randevu";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.dataGridView1);
-            this.groupBox6.Location = new System.Drawing.Point(0, 0);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(645, 320);
-            this.groupBox6.TabIndex = 4;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Mevcut Randevularım";
+            this.groupListCurrent.Controls.Add(this.dataGridView1);
+            this.groupListCurrent.Location = new System.Drawing.Point(288, 79);
+            this.groupListCurrent.Name = "groupListCurrent";
+            this.groupListCurrent.Size = new System.Drawing.Size(645, 320);
+            this.groupListCurrent.TabIndex = 4;
+            this.groupListCurrent.TabStop = false;
+            this.groupListCurrent.Text = "Mevcut Randevularım";
             // 
             // dataGridView1
             // 
@@ -262,6 +241,15 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(35, 58);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(545, 148);
+            this.listBox1.TabIndex = 0;
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.button8);
@@ -330,24 +318,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1226, 580);
+            this.Controls.Add(this.groupNewAppointment);
+            this.Controls.Add(this.groupListCurrent);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupListDoctor);
             this.Name = "Form4";
             this.Text = "Form4";
             this.Load += new System.EventHandler(this.Form4_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
+            this.groupListDoctor.ResumeLayout(false);
+            this.groupNewAppointment.ResumeLayout(false);
+            this.groupNewAppointment.PerformLayout();
+            this.groupListCurrent.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -363,11 +351,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupListDoctor;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupNewAppointment;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label3;
@@ -379,7 +366,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupListCurrent;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

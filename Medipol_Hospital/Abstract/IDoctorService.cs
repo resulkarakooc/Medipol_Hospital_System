@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Medipol_Hospital.Abstract
 {
-    public interface IPatientService
+    public interface IDoctorService
     {
-        List<Doctors> GetDoctorAll();
-
-        List<Appointment> GetCurrentAppt(int id);
+        List<Patinets> GetMyPat(int id);
     }
 }

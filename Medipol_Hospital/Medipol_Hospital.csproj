@@ -59,11 +59,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\ICheckedService.cs" />
+    <Compile Include="Abstract\IDoctorService.cs" />
     <Compile Include="Abstract\IPatientService.cs" />
     <Compile Include="Abstract\IPersoneLService.cs" />
     <Compile Include="Abstract\User.cs" />
     <Compile Include="Adapter\FakeAdapterCheckOfPerson.cs" />
     <Compile Include="Adapter\MernisCheckOfPerson.cs" />
+    <Compile Include="Concrete\DoctorManager.cs" />
     <Compile Include="Concrete\PatientManager.cs" />
     <Compile Include="Concrete\PersonelManager.cs" />
     <Compile Include="Connected Services\ServiceReference1\Reference.cs">

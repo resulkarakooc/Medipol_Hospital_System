@@ -11,10 +11,15 @@ namespace Medipol_Hospital.Concrete
 {
     public class PatientManager : IPatientService
     {
+        Context c = new Context();
+        public List<Appointment> GetCurrentAppt(int id)
+        {
+            return c.Appointments.Where(x=>x.p_ID == id).ToList();
+        }
 
         public List<Doctors> GetDoctorAll()
         {
-            Context c = new Context();
+
 
             return c.Doctors.ToList();
         }
