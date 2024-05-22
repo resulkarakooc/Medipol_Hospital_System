@@ -37,6 +37,12 @@ namespace Medipol_Hospital
             Application.Exit();
         }
 
-        
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form1 frm = new Form1();
+            frm.Show();
+            this.Close();
+            
+        }
     }
 }

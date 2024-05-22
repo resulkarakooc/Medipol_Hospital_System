@@ -128,6 +128,7 @@
             this.button7.TabIndex = 0;
             this.button7.Text = "Çıkış Yap";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 

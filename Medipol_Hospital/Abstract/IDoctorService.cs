@@ -9,6 +9,6 @@ namespace Medipol_Hospital.Abstract
 {
     public interface IDoctorService
     {
-        List<Patinets> GetMyPat(int id);
+        List<Object> GetMyPat(int id);
     }
 }
