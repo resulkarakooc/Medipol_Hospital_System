@@ -19,6 +19,7 @@ namespace MediSoft.Entities
         public int birthYear { get; set; }
 
         public int doctorID { get; set; }
+        public string Password { get; set; }
 
 
     }

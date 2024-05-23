@@ -19,5 +19,11 @@ namespace MediSoft.Entities
         public string Password { get; set; }
 
 
+        public string FullName
+        {
+            get { return $"{Name} {Surname}"; }
+        }
+
+
     }
 }

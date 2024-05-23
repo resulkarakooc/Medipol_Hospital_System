@@ -3,9 +3,6 @@ using Medipol_Hospital.Cryptography;
 using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,13 +28,11 @@ namespace Medipol_Hospital
 
             groupListDoctor.Visible = false;
             label6.Text = Session.sessionId.ToString();
+            label8.Text = Session.UserName.ToUpper();
         }
 
         private void button1_Click(object sender, EventArgs e) // Yeni Randevu
         {
-
-
-
             comboBox1.DataSource = c.Doctors.ToList();
             comboBox1.DisplayMember = "Name";
             comboBox1.ValueMember = "doctorID";
@@ -59,7 +54,6 @@ namespace Medipol_Hospital
         {
             groupListDoctor.Visible = true;
             groupNewAppointment.Visible = false;
-
             groupListCurrent.Visible = false;
 
             listBox1.Items.Clear();
@@ -76,7 +70,7 @@ namespace Medipol_Hospital
 
             Appointment meet = new Appointment()
             {
-                appinmentTime = dateTimePicker1.Value,
+                appinmentTime = dateTimePicker1.Value.Date,
                 p_ID = Session.sessionId,
                 doctorID = selectdoctor.doctorID,
 
@@ -119,6 +113,6 @@ namespace Medipol_Hospital
 
         }
 
-
+        
     }
 }

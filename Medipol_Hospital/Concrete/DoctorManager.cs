@@ -25,6 +25,7 @@ namespace Medipol_Hospital.Concrete
                              DoctorName = doctor.Name + " " + doctor.Surname,  //yeni obje satırları eşleme
                              PatientName = pat.Name + " " + pat.Surname,
                              Randevu_Tarihi = app.appinmentTime
+
                          }).ToList<object>();                                  //objeleri listelere ata
 
             return sonuc; //gönder

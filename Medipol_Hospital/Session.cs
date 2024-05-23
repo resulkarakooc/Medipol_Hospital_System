@@ -9,5 +9,6 @@ namespace Medipol_Hospital
     public class Session
     {
         public static int sessionId { get; set; }
+        public static string UserName { get; set; }
     }
 }

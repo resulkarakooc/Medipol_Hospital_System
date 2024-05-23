@@ -64,21 +64,29 @@ namespace Medipol_Hospital
             groupBox3.Visible = false;
             groupBox2.Visible = false;
 
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.WrapContents = true;
-
-            foreach (var x in personelManager.GetDoctorAll())
-            {
-
-                
-
-            }
-
-
-
-            
+            comboBox1.DataSource = c.Doctors.ToList();
+            comboBox1.DisplayMember = "FullName";
+            comboBox1.ValueMember = "doctorID";
         }
 
-        
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Doctors selectDoctor = (Doctors)comboBox1.SelectedItem;
+
+            personelManager.RemoveDoctor(selectDoctor);
+
+            comboBox1.DataSource = c.Doctors.ToList();
+            comboBox1.DisplayMember = "FullName";
+            comboBox1.ValueMember = "doctorID";
+
+        }
+
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+
     }
 }

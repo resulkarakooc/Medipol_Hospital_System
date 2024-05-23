@@ -11,5 +11,7 @@ namespace Medipol_Hospital.Abstract
     {
         List<Patinets> GetPatAll();
         List<Doctors> GetDoctorAll();
+
+        void RemoveDoctor(Doctors doctor);
     }
 }

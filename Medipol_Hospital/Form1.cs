@@ -1,9 +1,11 @@
-﻿using MediSoft.Entities;
+﻿using Medipol_Hospital.Cryptography;
+using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,41 +31,34 @@ namespace Medipol_Hospital
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1 != null || textBox2 != null) //boş mu kontrol et
+
+            string hashpass = Sha256Converter.ComputeSha256Hash(textBox2.Text);
+
+            Doctors dc = c.Doctors.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
+            Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
+            
+            if (dc != null)
             {
-                
-                //if(textBox1.Text == "61030403940" && textBox2.Text =="resul" )
-                //{
-                //    Form3 form3 = new Form3();
-                //    form3.Show();
-                //    this.Hide();
-                //}
-                if (radioButton1.Checked == true)
-                {
-                    Doctors deger = c.Doctors.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
-                    Session.sessionId = deger.doctorID;
-                    Form5 form5 = new Form5();
-                    form5.Show();
-                    this.Hide();
+                Session.sessionId = dc.doctorID;
+                Session.UserName = dc.Name;
+                Form5 form5 = new Form5();
+                form5.Show();
+                this.Hide();
+            }
+            else if (hasta != null)
+            {
 
-
-                }
-                else if (radioButton2.Checked == true)
-                {
-                    Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
-                    Session.sessionId = hasta.pID;
-                    Form4 form4 = new Form4();
-                    form4.Show();
-                    this.Hide();
-                }
-
-
-
+                Session.sessionId = hasta.pID;
+                Session.UserName = hasta.Name;
+                Form4 form4 = new Form4();
+                form4.Show();
+                this.Hide();
             }
             else
             {
-                MessageBox.Show("Tüm Alanları Doldurunuz");
+                MessageBox.Show("Bulunamadı");
             }
+
         }
 
         private void button2_Click(object sender, EventArgs e) //kapat
@@ -71,6 +66,6 @@ namespace Medipol_Hospital
             Application.Exit();
         }
 
-       
+
     }
 }

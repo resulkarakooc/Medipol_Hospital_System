@@ -66,6 +66,7 @@
     <Compile Include="Adapter\FakeAdapterCheckOfPerson.cs" />
     <Compile Include="Adapter\MernisCheckOfPerson.cs" />
     <Compile Include="Concrete\DoctorManager.cs" />
+    <Compile Include="Concrete\LoginManager.cs" />
     <Compile Include="Concrete\PatientManager.cs" />
     <Compile Include="Concrete\PersonelManager.cs" />
     <Compile Include="Connected Services\ServiceReference1\Reference.cs">
@@ -125,6 +126,10 @@
     <Compile Include="Migrations\202405211615552_setToTcNo.designer.cs">
       <DependentUpon>202405211615552_setToTcNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405231910239_addPassColumnInPatientTable.cs" />
+    <Compile Include="Migrations\202405231910239_addPassColumnInPatientTable.designer.cs">
+      <DependentUpon>202405231910239_addPassColumnInPatientTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405211615552_setToTcNo.resx">
       <DependentUpon>202405211615552_setToTcNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405231910239_addPassColumnInPatientTable.resx">
+      <DependentUpon>202405231910239_addPassColumnInPatientTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -200,6 +208,25 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxFOXITREADERLib">
+      <Guid>{3A8BD65E-9922-4162-A649-83F2D5326BBE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="FOXITREADERLib">
+      <Guid>{3A8BD65E-9922-4162-A649-83F2D5326BBE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
