@@ -1,4 +1,5 @@
 ﻿using Medipol_Hospital.Abstract;
+using Medipol_Hospital.Entities;
 using Medipol_Hospital.ServiceReference1;
 using MediSoft.Entities;
 using System;
@@ -15,15 +16,12 @@ namespace Medipol_Hospital.Adapter
         KPSPublicSoapClient isReel = new KPSPublicSoapClient();
         public bool CheckofPerson(Doctors doctor) //Mernis'ten dönen değer true veya false olucak 
         {
-
-
             return isReel.TCKimlikNoDogrula(Convert.ToInt64(doctor.nationalityNo), doctor.Name.ToUpper(), doctor.Surname.ToUpper(), doctor.BirthYear);
         }
 
         public bool CheckofPerson(Patinets patinet)
         {
-            bool deger = isReel.TCKimlikNoDogrula(Convert.ToInt64(patinet.nationalityNo), patinet.Name.ToUpper(), patinet.Surname.ToUpper(), patinet.birthYear);
-            return deger;
+            return isReel.TCKimlikNoDogrula(Convert.ToInt64(patinet.nationalityNo), patinet.Name.ToUpper(), patinet.Surname.ToUpper(), patinet.BirthYear);
         }
     }
 }

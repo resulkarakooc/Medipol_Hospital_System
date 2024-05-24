@@ -87,6 +87,23 @@ namespace Medipol_Hospital
             Application.Exit();
         }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Appointment app = (Appointment)comboBox1.SelectedItem;
+            personelManager.RemoveAppointment(app);
+        }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listBox3.DataSource = c.Appointments.ToList();
+            dataGridView1.DataSource = personelManager.GetAllPat();
+            
+
+        }
+
+        private void groupBox6_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

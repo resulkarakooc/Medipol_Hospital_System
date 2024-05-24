@@ -14,7 +14,7 @@ namespace Medipol_Hospital
     public partial class Form4 : Form
     {
         Context c;
-        PatientManager patientManager = new PatientManager();//nesne türet ve içindeki methotlara eriş
+        PatientManager patientManager = new PatientManager(); //nesne türet ve içindeki methotlara eriş
 
         public Form4()
         {
@@ -28,7 +28,7 @@ namespace Medipol_Hospital
 
             groupListDoctor.Visible = false;
             label6.Text = Session.sessionId.ToString();
-            label8.Text = Session.UserName.ToUpper();
+            //label8.Text = Session.UserName.ToUpper();
         }
 
         private void button1_Click(object sender, EventArgs e) // Yeni Randevu
@@ -63,9 +63,8 @@ namespace Medipol_Hospital
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e) //yeni randevu oluşturma
         {
-
             Doctors selectdoctor = (Doctors)comboBox1.SelectedItem;
 
             Appointment meet = new Appointment()
@@ -75,15 +74,8 @@ namespace Medipol_Hospital
                 doctorID = selectdoctor.doctorID,
 
             };
-            if (!c.Appointments.Any(x => x.appinmentTime == meet.appinmentTime))
-            {
-                c.Appointments.Add(meet);
-                c.SaveChanges();
-            }
-            else
-            {
-                MessageBox.Show("Randevu Dolu");
-            }
+
+            patientManager.AddNewAppointment(meet);
 
         }
 

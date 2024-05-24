@@ -44,5 +44,6 @@ namespace Medipol_Hospital
             this.Close();
             
         }
+
     }
 }

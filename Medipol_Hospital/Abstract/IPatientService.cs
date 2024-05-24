@@ -12,5 +12,6 @@ namespace Medipol_Hospital.Abstract
         List<Doctors> GetDoctorAll();
 
         List<Appointment> GetCurrentAppt(int id);
+        void AddNewAppointment(Appointment app);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Medipol_Hospital.Abstract;
+using Medipol_Hospital.Entities;
 using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Medipol_Hospital.Adapter
 {
-    public class FakeAdapterCheckOfPerson : ICheckedService
+    public class FakeAdapterCheckOfPerson : ICheckedService  //developer için geçici 
     {
-        public bool CheckofPerson(Doctors doctor)  //developer için geçici 
+        public bool CheckofPerson(Doctors doctor)
         {
             return true;
         }

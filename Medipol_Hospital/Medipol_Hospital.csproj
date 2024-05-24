@@ -60,9 +60,9 @@
   <ItemGroup>
     <Compile Include="Abstract\ICheckedService.cs" />
     <Compile Include="Abstract\IDoctorService.cs" />
+    <Compile Include="Abstract\ILoginService.cs" />
     <Compile Include="Abstract\IPatientService.cs" />
     <Compile Include="Abstract\IPersoneLService.cs" />
-    <Compile Include="Abstract\User.cs" />
     <Compile Include="Adapter\FakeAdapterCheckOfPerson.cs" />
     <Compile Include="Adapter\MernisCheckOfPerson.cs" />
     <Compile Include="Concrete\DoctorManager.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="Entities\Doctors.cs" />
     <Compile Include="Entities\Patients.cs" />
     <Compile Include="Entities\Peak.cs" />
+    <Compile Include="Entities\Users.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +131,14 @@
     <Compile Include="Migrations\202405231910239_addPassColumnInPatientTable.designer.cs">
       <DependentUpon>202405231910239_addPassColumnInPatientTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405241141189_nullableDoctorIdInPatientsTable.cs" />
+    <Compile Include="Migrations\202405241141189_nullableDoctorIdInPatientsTable.designer.cs">
+      <DependentUpon>202405241141189_nullableDoctorIdInPatientsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405241226505_LongToStringNationalityNo.cs" />
+    <Compile Include="Migrations\202405241226505_LongToStringNationalityNo.designer.cs">
+      <DependentUpon>202405241226505_LongToStringNationalityNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +172,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405231910239_addPassColumnInPatientTable.resx">
       <DependentUpon>202405231910239_addPassColumnInPatientTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405241141189_nullableDoctorIdInPatientsTable.resx">
+      <DependentUpon>202405241141189_nullableDoctorIdInPatientsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405241226505_LongToStringNationalityNo.resx">
+      <DependentUpon>202405241226505_LongToStringNationalityNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

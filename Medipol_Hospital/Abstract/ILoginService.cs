@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace Medipol_Hospital.Abstract
 {
-    public interface ICheckedService
+    public interface ILoginService
     {
-        bool CheckofPerson(Doctors doctor);
-        bool CheckofPerson(Patinets patinet);
-        
+        bool Login(Patinets hasta, Doctors dc);
+
+        bool RegisterPatient(Patinets patinet);
+        bool RegisterDoctor(Doctors doctor);
     }
 }

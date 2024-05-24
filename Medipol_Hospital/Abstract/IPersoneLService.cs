@@ -13,5 +13,8 @@ namespace Medipol_Hospital.Abstract
         List<Doctors> GetDoctorAll();
 
         void RemoveDoctor(Doctors doctor);
+        void RemoveAppointment(Appointment app);
+         List<object> GetAllPat();
+       
     }
 }

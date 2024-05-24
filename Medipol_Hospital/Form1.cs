@@ -1,4 +1,5 @@
-﻿using Medipol_Hospital.Cryptography;
+﻿using Medipol_Hospital.Concrete;
+using Medipol_Hospital.Cryptography;
 using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
@@ -31,33 +32,23 @@ namespace Medipol_Hospital
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            string hashpass = Sha256Converter.ComputeSha256Hash(textBox2.Text);
+            if(textBox1.Text=="***" && textBox2.Text == "***")
+            {
+                Form3 form3 = new Form3();
+                form3.Show();
+                this.Hide();
+            }
+            
 
             Doctors dc = c.Doctors.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
-            Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
-            
-            if (dc != null)
-            {
-                Session.sessionId = dc.doctorID;
-                Session.UserName = dc.Name;
-                Form5 form5 = new Form5();
-                form5.Show();
-                this.Hide();
-            }
-            else if (hasta != null)
-            {
 
-                Session.sessionId = hasta.pID;
-                Session.UserName = hasta.Name;
-                Form4 form4 = new Form4();
-                form4.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Bulunamadı");
-            }
+            Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
+
+            string hashpass = Sha256Converter.ComputeSha256Hash(textBox2.Text);
+            LoginManager loginManager = new LoginManager();
+            if(loginManager.Login(hasta, dc)) {this.Hide();} 
+
+           
 
         }
 

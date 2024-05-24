@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Medipol_Hospital.Abstract
+namespace Medipol_Hospital.Entities
 {
-    public class User
+    public class Users
     {
-
+       
     }
 }

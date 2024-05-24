@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace MediSoft.Entities
 {
@@ -15,5 +16,7 @@ namespace MediSoft.Entities
         public int p_ID { get; set; }
         public int doctorID { get; set; }
         public DateTime appinmentTime { get; set; }
+
+       
     }
 }

@@ -14,5 +14,6 @@ namespace MediSoft.Entities
         public DbSet<Patinets> Patches { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
 
+
     }
 }
