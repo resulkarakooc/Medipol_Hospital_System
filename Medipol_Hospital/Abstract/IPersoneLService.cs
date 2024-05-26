@@ -9,12 +9,16 @@ namespace Medipol_Hospital.Abstract
 {
     public interface IPersoneLService
     {
-        List<Patinets> GetPatAll();
-        List<Doctors> GetDoctorAll();
-
-        void RemoveDoctor(Doctors doctor);
-        void RemoveAppointment(Appointment app);
-         List<object> GetAllPat();
        
+        List<object> GetDoctorAll();
+        void RemoveDoctor(int id);
+        void RemoveAppointment(int id);
+        List<object> GetAllPat();
+
+        List<Object> GetAllAppointment();
+
+
+
+
     }
 }

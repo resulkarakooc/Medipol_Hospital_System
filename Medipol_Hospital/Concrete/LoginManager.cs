@@ -14,6 +14,7 @@ namespace Medipol_Hospital.Concrete
     public class LoginManager : ILoginService
     {
         Context c = new Context();
+        ICheckedService check = new FakeAdapterCheckOfPerson(); //doğrulama hizmeti seç
         public bool Login(Patinets hasta, Doctors dc)
         {
             if (dc != null)
@@ -41,22 +42,21 @@ namespace Medipol_Hospital.Concrete
             }
         }
 
-        
+
 
         public bool RegisterDoctor(Doctors doctor)
         {
-
             if (!c.Patches.Any(a => a.nationalityNo == doctor.nationalityNo))
             {
-                ICheckedService check = new FakeAdapterCheckOfPerson(); //böyle biri gerçekten var mı?
+                //böyle biri gerçekten var mı?
 
                 if (check.CheckofPerson(doctor)) //kişi doğrulanınca if'in içine gir
                 {
                     c.Doctors.Add(doctor);//ekle tabloya
                     c.SaveChanges();    //kaydet
-                    MessageBox.Show("Hasta başarıyla eklendi."); //feedback
-                    Form4 form4 = new Form4();
-                    form4.Show();  //yönlendir
+                    MessageBox.Show("Doktor başarıyla eklendi."); //feedback
+                    Form5 form5 = new Form5();
+                    form5.Show();  //yönlendir
                     return true;
                 }
                 else
@@ -77,17 +77,17 @@ namespace Medipol_Hospital.Concrete
 
             if (!c.Patches.Any(a => a.nationalityNo == patinet.nationalityNo))
             {
-                ICheckedService check = new FakeAdapterCheckOfPerson(); //böyle biri gerçekten var mı?
-
                 if (check.CheckofPerson(patinet)) //kişi doğrulanınca if'in içine gir
                 {
                     c.Patches.Add(patinet); //ekle tabloya
                     c.SaveChanges();    //kaydet
                     MessageBox.Show("Hasta başarıyla eklendi."); //feedback
+                    Session.sessionId = patinet.pID;
+                    Session.UserName = patinet.Name;
+
                     Form4 form4 = new Form4();
                     form4.Show();  //yönlendir
                     return true;
-
                 }
                 else
                 {

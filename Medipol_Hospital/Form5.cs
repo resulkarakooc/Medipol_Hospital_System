@@ -1,13 +1,8 @@
 ﻿using Medipol_Hospital.Concrete;
+using Medipol_Hospital.MailService;
+using Medipol_Hospital.PdfCreater;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace Medipol_Hospital
@@ -23,18 +18,13 @@ namespace Medipol_Hospital
 
         private void Form5_Load(object sender, EventArgs e)
         {
-             
+            //label3.Text = Session.UserName;
         }
 
 
         private void button1_Click(object sender, EventArgs e) //giriş yapan doktora randevusu olan hastalara getir 
         {
            dataGridView1.DataSource =  doctorManager.GetMyPat(Session.sessionId); //gelen listeyi ata
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -45,5 +35,16 @@ namespace Medipol_Hospital
             
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MailService.MailService.SendEmail("resul.coder@gmail.com");
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        
     }
 }

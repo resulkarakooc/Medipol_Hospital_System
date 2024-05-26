@@ -17,12 +17,16 @@ namespace Medipol_Hospital
     public partial class Form1 : Form
     {
         Context c = new Context();
+        LoginManager loginManager = new LoginManager();
 
         public Form1()
         {
             InitializeComponent();
         }
-
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+        }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) //linkLabel ile yeni kullanıcı oluştur
         {
             Form2 form2 = new Form2();
@@ -32,23 +36,24 @@ namespace Medipol_Hospital
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text=="***" && textBox2.Text == "***")
+            if (textBox1.Text == "***" && textBox2.Text == "***")
             {
                 Form3 form3 = new Form3();
                 form3.Show();
                 this.Hide();
             }
-            
+
 
             Doctors dc = c.Doctors.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
 
             Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
 
             string hashpass = Sha256Converter.ComputeSha256Hash(textBox2.Text);
-            LoginManager loginManager = new LoginManager();
-            if(loginManager.Login(hasta, dc)) {this.Hide();} 
 
-           
+
+            if (loginManager.Login(hasta, dc)) { this.Hide(); }
+
+
 
         }
 

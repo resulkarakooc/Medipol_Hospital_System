@@ -9,41 +9,42 @@ using System.Windows.Forms;
 
 namespace Medipol_Hospital.Concrete
 {
-    
+
     public class PersonelManager : IPersoneLService
     {
         Context c = new Context();
-        public List<Patinets> GetPatAll()
+      
+
+        public List<object> GetDoctorAll()
         {
-            Context ce = new Context();
-            return ce.Patches.ToList();
+
+            var doctors = c.Doctors
+                .Select(d => new
+                {
+                    d.doctorID,
+                    d.nationalityNo,
+                    d.Name,
+                    d.Surname,
+                    d.BirthYear
+                })
+                .ToList<object>();
+
+            return doctors;
         }
 
-        public List<Doctors> GetDoctorAll()
+        public void RemoveDoctor(int id)
         {
-            
 
-            return c.Doctors.ToList();
-        }
-
-        public void RemoveDoctor(Doctors doctor)
-        {
-            
             DialogResult result = MessageBox.Show("Emin misiniz?", "Uyarı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                int a = doctor.doctorID;
-                var deger = c.Doctors.FirstOrDefault(x => x.doctorID == a);
+                var deger = c.Doctors.FirstOrDefault(x => x.doctorID == id);
                 c.Doctors.Remove(deger);
                 c.SaveChanges();
             }
         }
 
-        public void RemoveAppointment(Appointment app)
-        {
-            c.Appointments.Remove(app);
-            c.SaveChanges();
-        }
+
 
         public List<object> GetAllPat()
         {
@@ -53,16 +54,47 @@ namespace Medipol_Hospital.Concrete
                          on doctor.doctorID equals app.doctorID                //doctor ID aynı olan satırları tut
                          join pat in c.Patches                                 //aynısı hasta tablosu için
                          on app.p_ID equals pat.pID                            //randevu tablosu hasta ıd ile eşle ve tut
-                                                 // gelen parametreden doktoru ayıkla
                          select new
                          {
-                             DoctorName = doctor.Name + " " + doctor.Surname,  //yeni obje satırları eşleme
-                             PatientName = pat.Name + " " + pat.Surname,
-                             Randevu_Tarihi = app.appinmentTime
+                             Hasta_ID = pat.pID,
+                             TC_Kimlik_no = pat.nationalityNo, //yeni obje satırları eşleme
+                             Hasta_Ismi = pat.Name,
+                             Soyisim = pat.Surname,
+                             DogumYılı = pat.BirthYear
+
 
                          }).ToList<object>();                                  //objeleri listelere ata
 
             return sonuc; //gönder
         }
+
+        public void RemoveAppointment(int id)
+        {
+            var sonuc = c.Appointments.FirstOrDefault(x => x.meet_ID == id);
+            c.Appointments.Remove(sonuc);
+            MessageBox.Show($"{sonuc.meet_ID}'li randevu silindi ");
+
+            c.SaveChanges();
+        }
+
+        public List<Object> GetAllAppointment()
+        {
+            var sonuc = (from rnd in c.Appointments
+                         join hasta in c.Patches
+                         on rnd.p_ID equals hasta.pID
+                         join doctor in c.Doctors
+                         on rnd.doctorID equals doctor.doctorID
+                         select new
+                         {
+                             Randevu_ID = rnd.meet_ID,
+                             Doktor_Ismi = doctor.Name + " " + doctor.Surname,
+                             Hasta_İsmi = hasta.Name + " " + hasta.Surname,
+                             Randevu_Tarihi = rnd.appinmentTime
+
+                         }).ToList<object>();
+
+            return sonuc; //gönder
+        }
+
     }
 }

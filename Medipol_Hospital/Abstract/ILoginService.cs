@@ -11,7 +11,6 @@ namespace Medipol_Hospital.Abstract
     public interface ILoginService
     {
         bool Login(Patinets hasta, Doctors dc);
-
         bool RegisterPatient(Patinets patinet);
         bool RegisterDoctor(Doctors doctor);
     }
