@@ -25,10 +25,10 @@ namespace Medipol_Hospital
         {
             //nesne türet ve içindeki methotlara eriş
             c = new Context();
-
-            groupListDoctor.Visible = false;
+            VisibleFalse();
+            
             label6.Text = Session.sessionId.ToString();
-            //label8.Text = Session.UserName.ToUpper();
+            label8.Text = Session.UserName.ToUpper();
         }
 
         private void button1_Click(object sender, EventArgs e) // Yeni Randevu
@@ -37,24 +37,16 @@ namespace Medipol_Hospital
             comboBox1.DisplayMember = "Name";
             comboBox1.ValueMember = "doctorID";
 
+            VisibleFalse();
             groupNewAppointment.Visible = true;
-            groupListDoctor.Visible = false;
-            groupListCurrent.Visible = false;
-
-            //comboBox1.Items.Clear();
-            //// Doktorları ListBox'a ekleme
-            //foreach (var doktor in patientManager.GetDoctorAll())
-            //{
-            //    comboBox1.Items.Add(doktor.Name);
-            //}
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            VisibleFalse();
             groupListDoctor.Visible = true;
-            groupNewAppointment.Visible = false;
-            groupListCurrent.Visible = false;
+           
 
             listBox1.Items.Clear();
             foreach (var x in patientManager.GetDoctorAll())
@@ -79,11 +71,6 @@ namespace Medipol_Hospital
 
         }
 
-        private void button8_Click(object sender, EventArgs e) // Çıkış butonu
-        {
-            Application.Exit();
-        }
-
         private void button7_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
@@ -94,17 +81,25 @@ namespace Medipol_Hospital
 
         private void button2_Click(object sender, EventArgs e) //mevcut randevu listesi
         {
+            VisibleFalse();
             List<Appointment> currnetapp = patientManager.GetCurrentAppt(Session.sessionId); //method ile randevular getirildi oturumu açık olan hastanın
 
-            dataGridView1.DataSource = currnetapp; //getirilen liste dataGridView'e aktarıldı
-
-            groupNewAppointment.Visible = false;
-            groupListDoctor.Visible = false;
+            dataGridView1.DataSource = currnetapp; //getirilen liste dataGridView'e aktarıldı          
             groupListCurrent.Visible = true;
-            
-
         }
 
-        
+        private void button8_Click(object sender, EventArgs e) // Çıkış butonu
+        {
+            Application.Exit();
+        }
+
+        private void VisibleFalse()
+        {
+            groupNewAppointment.Visible = false;
+            groupListDoctor.Visible = false;
+            groupListCurrent.Visible = false;
+        }
+
+
     }
 }

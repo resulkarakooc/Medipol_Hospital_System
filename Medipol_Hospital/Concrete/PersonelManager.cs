@@ -48,24 +48,21 @@ namespace Medipol_Hospital.Concrete
 
         public List<object> GetAllPat()
         {
-            //LINQ sorgusu yap inner join için
-            var sonuc = (from doctor in c.Doctors                              //dokotorlar tablosundaki her bir satır içi ism ata
-                         join app in c.Appointments                            //randevular içi ne aynısı
-                         on doctor.doctorID equals app.doctorID                //doctor ID aynı olan satırları tut
-                         join pat in c.Patches                                 //aynısı hasta tablosu için
-                         on app.p_ID equals pat.pID                            //randevu tablosu hasta ıd ile eşle ve tut
-                         select new
-                         {
-                             Hasta_ID = pat.pID,
-                             TC_Kimlik_no = pat.nationalityNo, //yeni obje satırları eşleme
-                             Hasta_Ismi = pat.Name,
-                             Soyisim = pat.Surname,
-                             DogumYılı = pat.BirthYear
+            var hasta = c.Patches.Select(d => new
+            {
+                d.pID,
+                d.nationalityNo,
+                d.Name,
+                d.Surname,
+                d.Email,
+                d.BirthYear
 
+            }).ToList<Object>();
+                
 
-                         }).ToList<object>();                                  //objeleri listelere ata
+                              
 
-            return sonuc; //gönder
+            return hasta; //gönder
         }
 
         public void RemoveAppointment(int id)

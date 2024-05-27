@@ -22,14 +22,19 @@ namespace Medipol_Hospital.Concrete
                          where doctor.doctorID == id                           // gelen parametreden doktoru ayıkla
                          select new
                          {
-                             DoctorName = doctor.Name + " " + doctor.Surname,  //yeni obje satırları eşleme
+
+                             ID = pat.pID,  //yeni obje satırları eşleme
                              PatientName = pat.Name + " " + pat.Surname,
-                             Randevu_Tarihi = app.appinmentTime
+                             Randevu_Tarihi = app.appinmentTime,
+                             Dogum_Yılı = pat.BirthYear,
+                             DoctorName = doctor.Name + " " + doctor.Surname
 
                          }).ToList<object>();                                  //objeleri listelere ata
 
             return sonuc; //gönder
         }
+
+
 
     }
 }

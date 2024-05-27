@@ -1,62 +1,113 @@
 ﻿using iTextSharp.text.pdf;
 using iTextSharp.text;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Medipol_Hospital.PdfCreater;
+using System.Collections.Generic;
 
 namespace Medipol_Hospital.PdfCreater
 {
     public class PdfCreater
     {
-
-        public void create()
+        public class TextItem
         {
-            // SaveFileDialog kullanarak kullanıcıya dosya kaydetme diyalogu göster
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
-            saveFileDialog.Title = "Save PDF File";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            public float X { get; set; }
+            public float Y { get; set; }
+            public string Content { get; set; }
+
+            public TextItem(float x, float y, string content)
             {
-                // PDF oluştur
-                CreatePdf(saveFileDialog.FileName);
+                X = x;
+                Y = y;
+                Content = content;
             }
+
+
         }
 
-
-        public void CreatePdf(string filePath)
+        public static void Create(string TcNo, string HastaAdı, string HastaSoyadı, string doktorAdı, string doktorSoyadı, string tarih,string ilaçlar)
         {
-
-
-
-
-            // Document nesnesi oluştur
-            Document doc = new Document();
             try
             {
-                // PdfWriter nesnesi oluştur ve dosyayı aç
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
-                doc.Open();
+                //using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                //{
+                //    openFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                //    openFileDialog.Title = "PDF Dosyasını Seçin";
 
-                // PDF'ye içerik ekle
-                doc.Add(new Paragraph("Bu bir PDF belgesidir."));
-                doc.Add(new Paragraph("Aşağıdaki alanları doldurun:"));
+                //if (openFileDialog.ShowDialog() == DialogResult.OK)
+                //{
+                string inputFile = @"C:\Users\Resul Karakoç\source\repos\Medipol_Hospital\Medipol_Hospital\PdfCreater\reçete.pdf";
 
-                // Değiştirilebilir alanlar ekle
-                PdfFormField field = PdfFormField.CreateTextField(writer, false, false, 50);
-                field.FieldName = "name";
-                field.SetWidget(new Rectangle(100, 750, 300, 770), PdfAnnotation.HIGHLIGHT_INVERT);
-                writer.AddAnnotation(field);
 
-                doc.Close();
+                PdfReader reader = new PdfReader(inputFile);
+
+
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+                    saveFileDialog.Title = "PDF Dosyasını Kaydet";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string outputFile = saveFileDialog.FileName;
+
+                        Document document = new Document();
+                        PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(outputFile, FileMode.Create));
+
+                        document.Open();
+
+                        BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                        Font font = new Font(bf, 12, Font.NORMAL);
+
+                        PdfContentByte cb = writer.DirectContent;
+
+                        List<TextItem> textItems = new List<TextItem>()
+                                 {
+                                   new TextItem(100f, 500f,TcNo),
+                                   new TextItem(200f, 600f, HastaAdı+" "+HastaSoyadı),
+                                   new TextItem(400f, 700f, doktorAdı+" "+doktorSoyadı),
+                                   new TextItem(400f, 800f, tarih),
+                                   new TextItem(400f,900f,ilaçlar)
+
+                                    
+                                 };
+
+                        PdfImportedPage importedPage = writer.GetImportedPage(reader, 1);
+                        cb.AddTemplate(importedPage, 0, 0);
+
+                        foreach (var item in textItems)
+                        {
+                            float x = item.X;
+                            float y = item.Y;
+                            string content = item.Content;
+
+                            cb.BeginText();
+                            cb.SetFontAndSize(bf, 12);
+                            cb.SetTextMatrix(x, y);
+                            cb.ShowText(content);
+                            cb.EndText();
+                        }
+
+                        document.Close();
+                        reader.Close();
+
+                        MessageBox.Show("PDF dosyası başarıyla oluşturuldu ve kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                // }
+                // }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("PDF oluşturulurken bir hata oluştu: " + ex.Message);
+                MessageBox.Show("Bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
     }
 }
+
+// Program sınıfı ana metodu içeren kısım
+

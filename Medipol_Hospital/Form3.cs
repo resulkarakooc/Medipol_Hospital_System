@@ -18,8 +18,7 @@ namespace Medipol_Hospital
 
         private void Form3_Load(object sender, EventArgs e)
         {
-
-
+            dataGridView3.DataSource = personelManager.GetAllPat();
             VisibleFalse();
         }
 
@@ -27,11 +26,7 @@ namespace Medipol_Hospital
         {
             VisibleFalse();
             groupBox2.Visible = true;
-
-            dataGridView3.DataSource = personelManager.GetAllPat();
-
         }
-
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -49,6 +44,7 @@ namespace Medipol_Hospital
                 int selectedRowIndex = dataGridView2.SelectedRows[0].Index;
                 
                     int doctorID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["doctorID"].Value);
+
                     personelManager.RemoveDoctor(doctorID);
 
                     dataGridView1.DataSource = c.Doctors.ToList();
@@ -69,7 +65,6 @@ namespace Medipol_Hospital
 
         private void button9_Click(object sender, EventArgs e)
         {
-
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int selectedRowIndex = dataGridView1.SelectedRows[0].Index;
@@ -101,7 +96,6 @@ namespace Medipol_Hospital
         public void VisibleFalse()
         {
             groupBox2.Visible = false;
-            
             groupBox4.Visible = false;
             groupBox6.Visible = false;
         }

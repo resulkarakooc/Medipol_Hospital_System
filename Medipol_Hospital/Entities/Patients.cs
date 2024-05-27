@@ -19,6 +19,8 @@ namespace MediSoft.Entities
         public int BirthYear { get; set; }
         public string Password { get; set; }
 
+        public string Email { get; set; }
+
         public DateTime registerDate { get; set; }
         public int? doctorID { get; set; }
         
