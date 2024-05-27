@@ -49,6 +49,7 @@ namespace Medipol_Hospital
                 {
                     Patinets user = new Patinets()
                     {
+                        Email = textBox6.Text,
                         nationalityNo = textBox1.Text,
                         Name = textBox2.Text,
                         Surname = textBox3.Text,
@@ -71,6 +72,7 @@ namespace Medipol_Hospital
                         Name = textBox2.Text,
                         Surname = textBox3.Text,
                         BirthYear = Convert.ToInt32(textBox5.Text),
+                        Email = textBox6.Text,
                         Password = hashpass
                     };
 

@@ -15,7 +15,6 @@ namespace Medipol_Hospital.PdfCreater
             public float X { get; set; }
             public float Y { get; set; }
             public string Content { get; set; }
-
             public TextItem(float x, float y, string content)
             {
                 X = x;
@@ -26,7 +25,7 @@ namespace Medipol_Hospital.PdfCreater
 
         }
 
-        public static void Create(string TcNo, string HastaAdı, string HastaSoyadı, string doktorAdı, string doktorSoyadı, string tarih,string ilaçlar)
+        public static void Create(string TcNo, string HastaAdı, string HastaSoyadı, string doktorAdı, string doktorSoyadı, string tarih, string ilaçlar, string tani,string aciklama)
         {
             try
             {
@@ -64,13 +63,15 @@ namespace Medipol_Hospital.PdfCreater
 
                         List<TextItem> textItems = new List<TextItem>()
                                  {
-                                   new TextItem(100f, 500f,TcNo),
-                                   new TextItem(200f, 600f, HastaAdı+" "+HastaSoyadı),
-                                   new TextItem(400f, 700f, doktorAdı+" "+doktorSoyadı),
-                                   new TextItem(400f, 800f, tarih),
-                                   new TextItem(400f,900f,ilaçlar)
+                                   new TextItem(100f, 540f,TcNo),
+                                   new TextItem(100f, 600f, HastaAdı+" "+HastaSoyadı),
+                                   new TextItem(400f, 550f, doktorAdı+" "+doktorSoyadı),
+                                   new TextItem(400f, 620f, tarih),
+                                   new TextItem(240f, 435f,ilaçlar),
+                                   new TextItem(100f, 500f,tani),
+                                   new TextItem(100f, 200f,aciklama)
 
-                                    
+
                                  };
 
                         PdfImportedPage importedPage = writer.GetImportedPage(reader, 1);

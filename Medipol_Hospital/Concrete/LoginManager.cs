@@ -21,6 +21,9 @@ namespace Medipol_Hospital.Concrete
             {
                 Session.sessionId = dc.doctorID;
                 Session.UserName = dc.Name;
+                Session.UserSurname = dc.Surname;
+                Session.Password = dc.Password;
+                Session.WhoIsLoggedIn = 1; //1= doktor oturumu
                 Form5 form5 = new Form5();
                 form5.Show();
 
@@ -31,6 +34,9 @@ namespace Medipol_Hospital.Concrete
 
                 Session.sessionId = hasta.pID;
                 Session.UserName = hasta.Name;
+                Session.UserSurname = hasta.Surname;
+                Session.Password = hasta.Password;
+                Session.WhoIsLoggedIn = 0; // 0 = hasta oturumu
                 Form4 form4 = new Form4();
                 form4.Show();
                 return true;

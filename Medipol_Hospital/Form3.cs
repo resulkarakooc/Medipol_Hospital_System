@@ -42,13 +42,13 @@ namespace Medipol_Hospital
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 int selectedRowIndex = dataGridView2.SelectedRows[0].Index;
-                
-                    int doctorID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["doctorID"].Value);
 
-                    personelManager.RemoveDoctor(doctorID);
+                int doctorID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["doctorID"].Value);
 
-                    dataGridView1.DataSource = c.Doctors.ToList();
-               
+                personelManager.RemoveDoctor(doctorID);
+
+                dataGridView1.DataSource = c.Doctors.ToList();
+
             }
             else
             {
