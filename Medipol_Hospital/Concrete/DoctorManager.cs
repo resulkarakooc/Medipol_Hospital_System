@@ -36,11 +36,11 @@ namespace Medipol_Hospital.Concrete
 
         public void PrescriptionsCreate(int id,string ilaç,string tani,string aciklama)
         {
-            var sonuc = c.Patches.FirstOrDefault(x => x.pID == id);
-            string ad = sonuc.Name;
+            var sonuc = c.Patches.FirstOrDefault(x => x.pID == id);  //hastayı bul
+            string ad = sonuc.Name; 
             string soyad = sonuc.Surname;
             string birth = sonuc.BirthYear.ToString();
-            PdfCreater.PdfCreater.Create(sonuc.nationalityNo, ad, soyad, Session.UserName, Session.UserSurname, DateTime.Now.ToString(), ilaç, tani, aciklama);
+            PdfCreater.PdfCreater.Create(sonuc.nationalityNo, ad, soyad, Session.UserName, Session.UserSurname, DateTime.Now.ToString(), ilaç, tani, aciklama);  //reçete oluştur
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Medipol_Hospital.Adapter
     {
 
         KPSPublicSoapClient isReel = new KPSPublicSoapClient();
-        public bool CheckofPerson(Doctors doctor) //Mernis'ten dönen değer true veya false olucak 
+        public bool CheckofPerson(Doctors doctor) //Mernis'ten dönen değer true veya false olacaktırr..
         {
             return isReel.TCKimlikNoDogrula(Convert.ToInt64(doctor.nationalityNo), doctor.Name.ToUpper(), doctor.Surname.ToUpper(), doctor.BirthYear);
         }

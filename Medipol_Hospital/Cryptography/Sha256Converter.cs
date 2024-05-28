@@ -9,9 +9,9 @@ namespace Medipol_Hospital.Cryptography
 {
     public static class Sha256Converter
     {
-        public static string ComputeSha256Hash(string rawData)
+        public static string ComputeSha256Hash(string rawData)  //ham veriyi al
         {
-            // Create a SHA256
+            // SHA256 oluştur
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 // ComputeHash - returns byte array
@@ -23,7 +23,7 @@ namespace Medipol_Hospital.Cryptography
                 {
                     builder.Append(bytes[i].ToString("x2"));
                 }
-                return builder.ToString();
+                return builder.ToString(); //işlenmiş veriyi gönder
             }
         }
     }

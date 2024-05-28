@@ -9,7 +9,7 @@ namespace Medipol_Hospital
     public partial class Form5 : Form
     {
         Context c = new Context();
-        DoctorManager doctorManager = new DoctorManager();
+        DoctorManager doctorManager = new DoctorManager();    //doktor manager nesnesi üret
 
         public Form5()
         {
@@ -19,8 +19,8 @@ namespace Medipol_Hospital
         private void Form5_Load(object sender, EventArgs e)
         {
             VisibleFalse();
-            label3.Text = Session.UserName;
-            dataGridView2.DataSource = doctorManager.GetMyPat(Session.sessionId);
+            label3.Text = Session.UserName;                                        //Doktor ismini ekrana ver
+            dataGridView2.DataSource = doctorManager.GetMyPat(Session.sessionId); //doktorun hastalarını getir
         }
         private void button1_Click(object sender, EventArgs e) //giriş yapan doktora randevusu olan hastalara getir 
         {
@@ -28,24 +28,23 @@ namespace Medipol_Hospital
             groupBox2.Visible = true;
             dataGridView1.DataSource = doctorManager.GetMyPat(Session.sessionId); //gelen listeyi ata
         }
-
-        private void button7_Click(object sender, EventArgs e) // oturumu kapat
+        private void button3_Click(object sender, EventArgs e)
         {
-            Form1 frm = new Form1();
-            frm.Show();
-            this.Close();
+            VisibleFalse();
+            groupBox1.Visible = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)  //hasta muayene sonrası reçete hazırlama sayfası
         {
-            if (dataGridView2.SelectedRows.Count > 0)
+            if (dataGridView2.SelectedRows.Count > 0)  //birini seçtin mi
             {
-                int selectedRowIndex = dataGridView2.SelectedRows[0].Index;
-                int HastaID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["ID"].Value);
-                string ilaç = textBox2.Text;
+                int selectedRowIndex = dataGridView2.SelectedRows[0].Index; //seçili indexi al
+                int HastaID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["ID"].Value); // o indexteki kişin Id sini al
+                string ilaç = textBox2.Text;  //yazıları çek
                 string tani = textBox1.Text;
                 string aciklama = textBox3.Text;
-                doctorManager.PrescriptionsCreate(HastaID, ilaç, tani, aciklama);
+
+                doctorManager.PrescriptionsCreate(HastaID, ilaç, tani, aciklama); //managerdaki reçete oluşturucuya postala
             }
             else
             {
@@ -56,33 +55,33 @@ namespace Medipol_Hospital
 
         private void button2_Click(object sender, EventArgs e)
         {
-          //  MailService.MailService.SendEmail("resul.coder@gmail.com"); //mail onay kodu çalışır vaziyette
+            //  MailService.MailService.SendEmail("resul.coder@gmail.com"); //mail onay kodu çalışır vaziyette
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            VisibleFalse();
-            groupBox1.Visible = true;
-        }
-
-        private void button6_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e) //şifre yenileme ekranı
         {
             NewPassword pass = new NewPassword();
             pass.ShowDialog();
-
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e) // oturumu kapat
+        {
+            Form1 frm = new Form1();
+            frm.Show();
+            this.Close();
+        }
+
+        private void button8_Click(object sender, EventArgs e) //kapat
         {
             Application.Exit();
         }
 
         private void VisibleFalse()
         {
-            groupBox1.Visible=false;
-            groupBox2.Visible=false;          
+            groupBox1.Visible = false;
+            groupBox2.Visible = false;
         }
 
-       
+
     }
 }

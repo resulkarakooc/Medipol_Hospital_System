@@ -6,39 +6,35 @@ using System.Windows.Forms;
 
 namespace Medipol_Hospital
 {
-    public partial class Form2 : Form
+    public partial class Form2 : Form   //kayıt olma formu
     {
 
-        Context c = new Context();
-        LoginManager loginManager = new LoginManager();
+        Context c = new Context();                       //veri tabanı bağlantısı için Context sınıfından nesne üret
+        LoginManager loginManager = new LoginManager();  //login sınıfından nesne üret
         public Form2()
         {
             InitializeComponent();
         }
-
         private void Form2_Load(object sender, EventArgs e)
         {
-
         }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)  //giriş sayfasına gitmek
         {
-            Form1 form1 = new Form1();
+            Form1 form1 = new Form1();   
             form1.Show();
             this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1 != null && textBox2 != null && textBox3 != null && textBox4 != null && textBox5 != null)
+            if (textBox1 != null && textBox2 != null && textBox3 != null && textBox4 != null && textBox5 != null)  //boş mu diye kontrol ediliyor
             {
+                string hashpass = Sha256Converter.ComputeSha256Hash(textBox4.Text); /*Kullanıcı Güvenliği için  **Hashleme**/ 
 
-                string hashpass = Sha256Converter.ComputeSha256Hash(textBox4.Text); /*Hashleme*/
-
-                if (comboBox1.SelectedIndex == 0)
+                if (comboBox1.SelectedIndex == 0) //hasta
                 {
-                    Patinets user = new Patinets()
-                    {
+                    Patinets patient = new Patinets()       //Hasta sınıfından nesne üret 
+                    {                                      //ve bilgileri ata
                         Email = textBox6.Text,
                         nationalityNo = textBox1.Text,
                         Name = textBox2.Text,
@@ -48,15 +44,12 @@ namespace Medipol_Hospital
                         Password = hashpass
                     };
 
-                    if (loginManager.RegisterPatient(user)) { this.Hide(); }
-
-
+                    if (loginManager.RegisterPatient(patient)) { this.Hide(); }  //bilgileri kayıt etmek için uygun mu diye gönder 
                 }
-
                 //Doktor Kayıt
-                else if (comboBox1.SelectedIndex == 1)
+                else if (comboBox1.SelectedIndex == 1) //doktor
                 {
-                    Doctors user = new Doctors()
+                    Doctors doctor = new Doctors()
                     {
                         nationalityNo = textBox1.Text,
                         Name = textBox2.Text,
@@ -65,9 +58,7 @@ namespace Medipol_Hospital
                         Email = textBox6.Text,
                         Password = hashpass
                     };
-
-                    if (loginManager.RegisterDoctor(user)) { this.Hide(); }
-
+                    if (loginManager.RegisterDoctor(doctor)) { this.Hide(); } 
                 }
                 else
                 {
@@ -77,20 +68,9 @@ namespace Medipol_Hospital
             else
             {
                 MessageBox.Show("Tüm Alanları Doldurun Lütfen");
-
             }
-
-
-
         }
-
-
-        //Hashleme
-
-
-
-
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) // çıkış
         {
             Application.Exit();
         }

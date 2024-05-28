@@ -14,12 +14,12 @@ namespace Medipol_Hospital.Concrete
     {
         Context c = new Context();
 
-        public void AddNewAppointment(Appointment app)
+        public void AddNewAppointment(Appointment app)   //randevu oluştur
         {
             if (!c.Appointments.Any(x => x.appinmentTime == app.appinmentTime && x.doctorID == app.doctorID && x.hourAndSecond == app.hourAndSecond))
             {
-                c.Appointments.Add(app);
-                c.SaveChanges();
+                c.Appointments.Add(app);  //ekle
+                c.SaveChanges();         //kaydet
             }
             else
             {
@@ -27,12 +27,12 @@ namespace Medipol_Hospital.Concrete
             }
         }
 
-        public List<Appointment> GetCurrentAppt(int id)
+        public List<Appointment> GetCurrentAppt(int id)       //mevcut randevularımı getir
         {
-            return c.Appointments.Where(x=>x.p_ID == id).ToList();
+            return c.Appointments.Where(x=>x.p_ID == id).ToList(); //idler eşit ise getir liste olarak
         }
 
-        public List<Doctors> GetDoctorAll()
+        public List<Doctors> GetDoctorAll() //doktorların listesi
         {
             return c.Doctors.ToList();
         }

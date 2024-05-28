@@ -9,7 +9,7 @@ namespace Medipol_Hospital
     public partial class Form3 : Form
     {
         Context c = new Context();
-        PersonelManager personelManager = new PersonelManager();
+        PersonelManager personelManager = new PersonelManager();        //işlemler için personel sınıfıdan nesne üret
 
         public Form3()
         {
@@ -18,37 +18,36 @@ namespace Medipol_Hospital
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            dataGridView3.DataSource = personelManager.GetAllPat();
-            VisibleFalse();
+            dataGridView3.DataSource = personelManager.GetAllPat();   //verileri dataGride gönder
+            VisibleFalse();  //groupboxları kapat
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)  //hasta listesini getir
         {
             VisibleFalse();
             groupBox2.Visible = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)      //doktorların listesi getir
         {
             VisibleFalse();
             groupBox4.Visible = true;
-            dataGridView2.DataSource = personelManager.GetDoctorAll();
+            dataGridView2.DataSource = personelManager.GetDoctorAll(); //doktorların verilerini tabloya ekle 
         }
 
 
         private void button3_Click_1(object sender, EventArgs e)
         {
 
-            if (dataGridView2.SelectedRows.Count > 0)
+            if (dataGridView2.SelectedRows.Count > 0) //seçili satır sayısı 0 dan fazla mı
             {
-                int selectedRowIndex = dataGridView2.SelectedRows[0].Index;
+                int selectedRowIndex = dataGridView2.SelectedRows[0].Index; //seçili indexi getir
 
-                int doctorID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["doctorID"].Value);
+                int doctorID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["doctorID"].Value);  //o indexteki ID yi çek
 
-                personelManager.RemoveDoctor(doctorID);
+                personelManager.RemoveDoctor(doctorID); //seçilen doktorun silme işlemi için Managera gönder
 
-                dataGridView1.DataSource = c.Doctors.ToList();
-
+                dataGridView2.DataSource = personelManager.GetDoctorAll(); //yeni bilgileri getir
             }
             else
             {
@@ -56,23 +55,24 @@ namespace Medipol_Hospital
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)  //randevu sayfasını getir
         {
             VisibleFalse();
             groupBox6.Visible = true;
-            dataGridView1.DataSource = personelManager.GetAllAppointment();
+            dataGridView1.DataSource = personelManager.GetAllAppointment(); //managerdan gelen verileri datagridviewe ekle 
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0) //seçili satır var ise gir ifin içine
             {
-                int selectedRowIndex = dataGridView1.SelectedRows[0].Index;
+                int selectedRowIndex = dataGridView1.SelectedRows[0].Index; //seçili satırın index nosu
 
-                int randevuID = Convert.ToInt32(dataGridView1.Rows[selectedRowIndex].Cells["Randevu_ID"].Value);
-                personelManager.RemoveAppointment(randevuID);
+                int randevuID = Convert.ToInt32(dataGridView1.Rows[selectedRowIndex].Cells["Randevu_ID"].Value); //seçili satırdaki randevu Id Al
 
-                dataGridView1.DataSource = personelManager.GetAllAppointment();
+                personelManager.RemoveAppointment(randevuID); //managerdaki rendevu silme methoduna postala
+
+                dataGridView1.DataSource = personelManager.GetAllAppointment(); //değerleri yenile
             }
             else
             {
@@ -80,15 +80,15 @@ namespace Medipol_Hospital
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)  //çıkış yap 
         {
-            Form1 form1 = new Form1();
+            Form1 form1 = new Form1(); 
             form1.Show();
             this.Close();
 
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e)  //kapat 
         {
             Application.Exit();
         }
@@ -100,7 +100,10 @@ namespace Medipol_Hospital
             groupBox6.Visible = false;
         }
 
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 
 

@@ -31,35 +31,22 @@ namespace Medipol_Hospital
             label8.Text = Session.UserName.ToUpper();
         }
 
-        private void button1_Click(object sender, EventArgs e) // Yeni Randevu
+        private void button1_Click(object sender, EventArgs e) // Yeni Randevu sayfası
         {
-            comboBox1.DataSource = c.Doctors.ToList();
+            comboBox1.DataSource = c.Doctors.ToList(); //comboboxa verileri gönder
             comboBox1.DisplayMember = "FullName";
             comboBox1.ValueMember = "doctorID";
 
-            VisibleFalse();
+            VisibleFalse(); 
             groupNewAppointment.Visible = true;
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e) //yeni randevu oluşturma 
         {
-            VisibleFalse();
-            groupListDoctor.Visible = true;
-           
+            Doctors selectdoctor = (Doctors)comboBox1.SelectedItem;  //seçilen doktoru al 
 
-            listBox1.Items.Clear();
-            foreach (var x in patientManager.GetDoctorAll())
-            {
-                listBox1.Items.Add(x.Name + " " + x.Surname);
-            }
-        }
-
-        private void button5_Click(object sender, EventArgs e) //yeni randevu oluşturma
-        {
-            Doctors selectdoctor = (Doctors)comboBox1.SelectedItem;
-
-            Appointment meet = new Appointment()
+            Appointment meet = new Appointment()  //randevu nesnesi oluştur
             {
                 appinmentTime = dateTimePicker1.Value.Date,
                 p_ID = Session.sessionId,
@@ -68,25 +55,39 @@ namespace Medipol_Hospital
 
             };
 
-            patientManager.AddNewAppointment(meet);
+            patientManager.AddNewAppointment(meet); //managera postala
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            Form1 form1 = new Form1();
-            form1.Show();
-            this.Hide();
 
+        private void button4_Click(object sender, EventArgs e) //doktorları listele
+        {
+            VisibleFalse();
+            groupListDoctor.Visible = true;
+           
+
+            listBox1.Items.Clear();                             //listeye ekle doktorların isimlerini
+            foreach (var x in patientManager.GetDoctorAll())   
+            {
+                listBox1.Items.Add(x.Name + " " + x.Surname);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e) //mevcut randevu listesi
         {
             VisibleFalse();
-            List<Appointment> currnetapp = patientManager.GetCurrentAppt(Session.sessionId); //method ile randevular getirildi oturumu açık olan hastanın
+            List<Appointment> currnetapp = patientManager.GetCurrentAppt(Session.sessionId);   //method ile randevular getirildi oturumu açık olan hastanın
             
             dataGridView1.DataSource = currnetapp; //getirilen liste dataGridView'e aktarıldı          
             groupListCurrent.Visible = true;
+        }
+
+        private void button7_Click(object sender, EventArgs e)  // Çıkış yap
+        {
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
+
         }
 
         private void button8_Click(object sender, EventArgs e) // Çıkış butonu

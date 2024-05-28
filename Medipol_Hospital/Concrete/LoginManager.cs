@@ -15,29 +15,29 @@ namespace Medipol_Hospital.Concrete
     public class LoginManager : ILoginService
     {
         Context c = new Context();
-        ICheckedService check = new MernisCheckOfPerson(); //doğrulama hizmeti seç
+        ICheckedService check = new MernisCheckOfPerson(); //doğrulama hizmeti seç fake ya da Mernis ilerde farklı bir doğrulama hizmeti de gelebilirr
 
 
         public bool Logins(string tcno, string password)
         {
-            if (tcno == "***" && password == "***")
+            if (tcno == "11111111111" && password == "***")  //Müdür girişi
             {
-                Form3 form3 = new Form3();
+                Form3 form3 = new Form3(); //en yetkili sayfaya erişim
                 form3.Show();
-                return true;
+                return true;  //onayla
             }
             else
             {
-                string hashpass = Sha256Converter.ComputeSha256Hash(password);
+                string hashpass = Sha256Converter.ComputeSha256Hash(password); //gelen değeri **Hashle**
 
-                Doctors dc = c.Doctors.FirstOrDefault(x => x.nationalityNo.ToString() == tcno && x.Password == hashpass);
+                Doctors dc = c.Doctors.FirstOrDefault(x => x.nationalityNo.ToString() == tcno && x.Password == hashpass); //kontrol et
 
-                Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == tcno && x.Password == hashpass);
+                Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == tcno && x.Password == hashpass); //kontrol et
 
 
-                if (dc != null)
+                if (dc != null) //bir değer gelir ise
                 {
-                    Session.sessionId = dc.doctorID;
+                    Session.sessionId = dc.doctorID;  //oturum aç
                     Session.UserName = dc.Name;
                     Session.UserSurname = dc.Surname;
                     Session.Password = dc.Password;
@@ -70,13 +70,13 @@ namespace Medipol_Hospital.Concrete
 
 
 
-        public bool RegisterDoctor(Doctors doctor)
+        public bool RegisterDoctor(Doctors doctor)   //doktor kayıt etme methodu
         {
-            if (!c.Patches.Any(a => a.nationalityNo == doctor.nationalityNo))
+            if (!c.Patches.Any(a => a.nationalityNo == doctor.nationalityNo))   //daha önce kayıt olmuş mu?
             {
                 //böyle biri gerçekten var mı?
 
-                if (check.CheckofPerson(doctor)) //kişi doğrulanınca if'in içine gir
+                if (check.CheckofPerson(doctor)) //kişi doğrulama hizmeti 
                 {
                     c.Doctors.Add(doctor);//ekle tabloya
                     c.SaveChanges();    //kaydet
@@ -128,18 +128,16 @@ namespace Medipol_Hospital.Concrete
             }
         }
 
-        public bool Verification(string mail, int random)
+        public bool Verification(string mail, int random)                //kişiyi mail ile doğrulama hizmeti
         {
-
-
-            Doctors dc = c.Doctors.FirstOrDefault(x => x.Email.ToString() == mail);
+            Doctors dc = c.Doctors.FirstOrDefault(x => x.Email.ToString() == mail);     //bu mailde biri var mı
             Patinets hasta = c.Patches.FirstOrDefault(x => x.Email.ToString() == mail);
 
 
             if (dc != null)
             {
                 MailService.MailService.SendEmail(dc.Email, random);
-                Session.WhoIsLoggedIn = 1;
+                Session.WhoIsLoggedIn = 1;        //kısmi oturum aç ama erişim verme
                 Session.sessionId = dc.doctorID;
                 return true;
             }

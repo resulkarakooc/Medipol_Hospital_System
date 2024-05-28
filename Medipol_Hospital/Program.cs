@@ -11,17 +11,29 @@ namespace Medipol_Hospital
         [STAThread]
         static void Main()
         {
-            try
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+            AppDomain.CurrentDomain.UnhandledException += UnhandledExceptionHandler;
 
-            }
-            catch(Exception ex) 
-            {
-                MessageBox.Show("hata :" + ex);
-            }
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+
+
+
+        }
+
+        static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
+        {
+            Exception ex = (Exception)e.ExceptionObject;
+
+            string errorMessage = ex.ToString();
+
+            // Hata durumunda burası çalışacak
+            MessageBox.Show("Hata oluştu: " + errorMessage);
+            // Hata durumunda burası çalışacak
+           
+            // Hata işleme kodları buraya eklenebilir
+
+            // Uygulamayı durdurabilir veya gerekli diğer işlemleri yapabilirsiniz
             
         }
     }
