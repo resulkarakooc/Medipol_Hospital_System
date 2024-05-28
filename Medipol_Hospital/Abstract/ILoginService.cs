@@ -1,4 +1,4 @@
-﻿using Medipol_Hospital.Entities;
+﻿
 using MediSoft.Entities;
 using System;
 using System.Collections.Generic;

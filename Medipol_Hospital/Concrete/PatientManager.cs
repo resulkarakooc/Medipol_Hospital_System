@@ -16,7 +16,7 @@ namespace Medipol_Hospital.Concrete
 
         public void AddNewAppointment(Appointment app)
         {
-            if (!c.Appointments.Any(x => x.appinmentTime == app.appinmentTime))
+            if (!c.Appointments.Any(x => x.appinmentTime == app.appinmentTime && x.doctorID == app.doctorID && x.hourAndSecond == app.hourAndSecond))
             {
                 c.Appointments.Add(app);
                 c.SaveChanges();

@@ -1,5 +1,5 @@
 ﻿using Medipol_Hospital.Abstract;
-using Medipol_Hospital.Entities;
+
 using Medipol_Hospital.ServiceReference1;
 using MediSoft.Entities;
 using System;

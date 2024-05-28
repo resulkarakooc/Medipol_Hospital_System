@@ -34,6 +34,7 @@ namespace Medipol_Hospital.PdfCreater
                 {
                     saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
                     saveFileDialog.Title = "PDF Dosyasını Kaydet";
+                    saveFileDialog.FileName = HastaAdı+"_"+HastaSoyadı+"_Reçete.pdf";
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -44,8 +45,9 @@ namespace Medipol_Hospital.PdfCreater
 
                         document.Open();
 
-                        BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                        BaseFont bf = BaseFont.CreateFont("c:/windows/fonts/comic.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                         Font font = new Font(bf, 12, Font.NORMAL);
+
 
                         PdfContentByte cb = writer.DirectContent;
 
@@ -58,8 +60,6 @@ namespace Medipol_Hospital.PdfCreater
                              new TextItem(240f, 435f,ilaçlar),
                              new TextItem(100f, 500f,tani),
                              new TextItem(100f, 200f,aciklama)
-
-
                         };
 
                         PdfImportedPage importedPage = writer.GetImportedPage(reader, 1);
@@ -77,14 +77,12 @@ namespace Medipol_Hospital.PdfCreater
                             cb.ShowText(content);
                             cb.EndText();
                         }
-
                         document.Close();
                         reader.Close();
 
                         MessageBox.Show("PDF dosyası başarıyla oluşturuldu ve kaydedildi.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                }
-                
+                }              
             }
             catch (Exception ex)
             {

@@ -1,17 +1,7 @@
-﻿using Medipol_Hospital.Abstract;
-using Medipol_Hospital.Adapter;
-using Medipol_Hospital.Concrete;
+﻿using Medipol_Hospital.Concrete;
 using Medipol_Hospital.Cryptography;
-using Medipol_Hospital.Entities;
 using MediSoft.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Medipol_Hospital

@@ -10,5 +10,6 @@ namespace Medipol_Hospital.Abstract
     public interface IDoctorService
     {
         List<Object> GetMyPat(int id);
+        void PrescriptionsCreate(int id, string ilaç, string tani, string aciklama);
     }
 }

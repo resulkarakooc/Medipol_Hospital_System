@@ -171,6 +171,7 @@
             this.groupNewAppointment.TabIndex = 0;
             this.groupNewAppointment.TabStop = false;
             this.groupNewAppointment.Text = "Yeni Randevu";
+            
             // 
             // dateTimePicker2
             // 

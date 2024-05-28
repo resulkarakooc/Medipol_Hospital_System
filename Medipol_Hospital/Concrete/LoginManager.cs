@@ -1,7 +1,6 @@
 ﻿using Medipol_Hospital.Abstract;
 using Medipol_Hospital.Adapter;
 using Medipol_Hospital.Cryptography;
-using Medipol_Hospital.Entities;
 using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace Medipol_Hospital.Concrete
     public class LoginManager : ILoginService
     {
         Context c = new Context();
-        ICheckedService check = new FakeAdapterCheckOfPerson(); //doğrulama hizmeti seç
+        ICheckedService check = new MernisCheckOfPerson(); //doğrulama hizmeti seç
 
 
         public bool Logins(string tcno, string password)

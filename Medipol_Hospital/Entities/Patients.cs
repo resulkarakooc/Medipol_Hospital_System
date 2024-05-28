@@ -1,11 +1,5 @@
-﻿using Medipol_Hospital.Abstract;
-using Medipol_Hospital.Entities;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MediSoft.Entities
 {

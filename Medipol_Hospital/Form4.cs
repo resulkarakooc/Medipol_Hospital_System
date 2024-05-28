@@ -34,7 +34,7 @@ namespace Medipol_Hospital
         private void button1_Click(object sender, EventArgs e) // Yeni Randevu
         {
             comboBox1.DataSource = c.Doctors.ToList();
-            comboBox1.DisplayMember = "Name";
+            comboBox1.DisplayMember = "FullName";
             comboBox1.ValueMember = "doctorID";
 
             VisibleFalse();
@@ -64,6 +64,7 @@ namespace Medipol_Hospital
                 appinmentTime = dateTimePicker1.Value.Date,
                 p_ID = Session.sessionId,
                 doctorID = selectdoctor.doctorID,
+                hourAndSecond = dateTimePicker2.Value.Hour.ToString() + "." + dateTimePicker2.Value.Minute
 
             };
 
@@ -83,7 +84,7 @@ namespace Medipol_Hospital
         {
             VisibleFalse();
             List<Appointment> currnetapp = patientManager.GetCurrentAppt(Session.sessionId); //method ile randevular getirildi oturumu açık olan hastanın
-
+            
             dataGridView1.DataSource = currnetapp; //getirilen liste dataGridView'e aktarıldı          
             groupListCurrent.Visible = true;
         }
@@ -100,6 +101,6 @@ namespace Medipol_Hospital
             groupListCurrent.Visible = false;
         }
 
-
+      
     }
 }

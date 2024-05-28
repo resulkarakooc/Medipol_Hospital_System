@@ -41,15 +41,11 @@ namespace Medipol_Hospital
             if (dataGridView2.SelectedRows.Count > 0)
             {
                 int selectedRowIndex = dataGridView2.SelectedRows[0].Index;
-
                 int HastaID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["ID"].Value);
-
-                var sonuc = c.Patches.FirstOrDefault(x => x.pID == HastaID);
-                string ad = sonuc.Name;
-                string soyad = sonuc.Surname;
-                string birth = sonuc.BirthYear.ToString();
-
-                PdfCreater.PdfCreater.Create(sonuc.nationalityNo, ad, soyad, Session.UserName, Session.UserSurname, DateTime.Now.ToString(), textBox2.Text, textBox1.Text, textBox3.Text);
+                string ilaç = textBox2.Text;
+                string tani = textBox1.Text;
+                string aciklama = textBox3.Text;
+                doctorManager.PrescriptionsCreate(HastaID, ilaç, tani, aciklama);
             }
             else
             {
