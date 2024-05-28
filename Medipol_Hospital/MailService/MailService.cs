@@ -8,10 +8,10 @@ namespace Medipol_Hospital.MailService
 {
     public static class MailService
     {
-        public static void SendEmail(string recipientEmail)
+        public static void SendEmail(string recipientEmail,int rnd)
         {
-            Random rnd = new Random();
-            int confirm = rnd.Next(100000, 1000000); // 6 haneli kod üret
+            
+            
 
             try
             {
@@ -24,7 +24,7 @@ namespace Medipol_Hospital.MailService
                 mail.From = new MailAddress(senderEmail);
                 mail.To.Add(recipientEmail);
                 mail.Subject = "Medipol Hastanesi Onay Kodu"; //E-posta konusu
-                mail.Body = "Hesabınıza giriş yapmak için onay kodunuz :" + confirm; //E-posta içeriği
+                mail.Body = "Hesabınıza giriş yapmak için onay kodunuz :" + rnd; //E-posta içeriği
 
                 SmtpClient smtpClient = new SmtpClient(smtpServer, port);
                 smtpClient.UseDefaultCredentials = false;

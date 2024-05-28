@@ -1,9 +1,6 @@
 ﻿using Medipol_Hospital.Concrete;
-using Medipol_Hospital.MailService;
-using Medipol_Hospital.PdfCreater;
 using MediSoft.Entities;
 using System;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -28,7 +25,7 @@ namespace Medipol_Hospital
         private void button1_Click(object sender, EventArgs e) //giriş yapan doktora randevusu olan hastalara getir 
         {
             VisibleFalse();
-            groupBox2.Visible = false;
+            groupBox2.Visible = true;
             dataGridView1.DataSource = doctorManager.GetMyPat(Session.sessionId); //gelen listeyi ata
         }
 
@@ -63,7 +60,7 @@ namespace Medipol_Hospital
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MailService.MailService.SendEmail("resul.coder@gmail.com"); //mail onay kodu çalışır vaziyette
+          //  MailService.MailService.SendEmail("resul.coder@gmail.com"); //mail onay kodu çalışır vaziyette
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -74,6 +71,8 @@ namespace Medipol_Hospital
 
         private void button6_Click(object sender, EventArgs e)
         {
+            NewPassword pass = new NewPassword();
+            pass.ShowDialog();
 
         }
 

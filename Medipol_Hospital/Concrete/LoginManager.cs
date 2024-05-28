@@ -1,5 +1,6 @@
 ﻿using Medipol_Hospital.Abstract;
 using Medipol_Hospital.Adapter;
+using Medipol_Hospital.Cryptography;
 using Medipol_Hospital.Entities;
 using MediSoft.Entities;
 using System;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Medipol_Hospital.Concrete
 {
@@ -15,36 +17,55 @@ namespace Medipol_Hospital.Concrete
     {
         Context c = new Context();
         ICheckedService check = new FakeAdapterCheckOfPerson(); //doğrulama hizmeti seç
-        public bool Login(Patinets hasta, Doctors dc)
+
+
+        public bool Logins(string tcno, string password)
         {
-            if (dc != null)
+            if (tcno == "***" && password == "***")
             {
-                Session.sessionId = dc.doctorID;
-                Session.UserName = dc.Name;
-                Session.UserSurname = dc.Surname;
-                Session.Password = dc.Password;
-                Session.WhoIsLoggedIn = 1; //1= doktor oturumu
-                Form5 form5 = new Form5();
-                form5.Show();
-
-                return true;
-            }
-            else if (hasta != null)
-            {
-
-                Session.sessionId = hasta.pID;
-                Session.UserName = hasta.Name;
-                Session.UserSurname = hasta.Surname;
-                Session.Password = hasta.Password;
-                Session.WhoIsLoggedIn = 0; // 0 = hasta oturumu
-                Form4 form4 = new Form4();
-                form4.Show();
+                Form3 form3 = new Form3();
+                form3.Show();
                 return true;
             }
             else
             {
-                MessageBox.Show("Bulunamadı");
-                return false;
+                string hashpass = Sha256Converter.ComputeSha256Hash(password);
+
+                Doctors dc = c.Doctors.FirstOrDefault(x => x.nationalityNo.ToString() == tcno && x.Password == hashpass);
+
+                Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == tcno && x.Password == hashpass);
+
+
+                if (dc != null)
+                {
+                    Session.sessionId = dc.doctorID;
+                    Session.UserName = dc.Name;
+                    Session.UserSurname = dc.Surname;
+                    Session.Password = dc.Password;
+                    Session.WhoIsLoggedIn = 1; //1= doktor oturumu
+                    Form5 form5 = new Form5();
+                    form5.Show();
+
+                    return true;
+                }
+                else if (hasta != null)
+                {
+
+                    Session.sessionId = hasta.pID;
+                    Session.UserName = hasta.Name;
+                    Session.UserSurname = hasta.Surname;
+                    Session.Password = hasta.Password;
+                    Session.WhoIsLoggedIn = 0; // 0 = hasta oturumu
+                    Form4 form4 = new Form4();
+                    form4.Show();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Bulunamadı");
+                    return false;
+                }
+
             }
         }
 
@@ -106,7 +127,35 @@ namespace Medipol_Hospital.Concrete
                 MessageBox.Show("Zaten Kayıtlı Giriş Ekranına Gidiniz");
                 return false;
             }
+        }
 
+        public bool Verification(string mail, int random)
+        {
+
+
+            Doctors dc = c.Doctors.FirstOrDefault(x => x.Email.ToString() == mail);
+            Patinets hasta = c.Patches.FirstOrDefault(x => x.Email.ToString() == mail);
+
+
+            if (dc != null)
+            {
+                MailService.MailService.SendEmail(dc.Email, random);
+                Session.WhoIsLoggedIn = 1;
+                Session.sessionId = dc.doctorID;
+                return true;
+            }
+            else if (hasta != null)
+            {
+                MailService.MailService.SendEmail(hasta.Email, random);
+                Session.WhoIsLoggedIn = 0;
+                Session.sessionId = hasta.pID;
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("E-Posta Bulunamadı :(");
+                return false;
+            }
         }
     }
 }

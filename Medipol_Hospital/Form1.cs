@@ -2,15 +2,8 @@
 using Medipol_Hospital.Cryptography;
 using MediSoft.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Schema;
 
 namespace Medipol_Hospital
 {
@@ -18,50 +11,72 @@ namespace Medipol_Hospital
     {
         Context c = new Context();
         LoginManager loginManager = new LoginManager();
-
         public Form1()
         {
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.AutoScaleMode = AutoScaleMode.Dpi;
+            panel1.Visible = false;
+            Confirm(false);
         }
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) //linkLabel ile yeni kullanıcı oluştur
         {
             Form2 form2 = new Form2();
             form2.Show();
             this.Hide();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (textBox1.Text == "***" && textBox2.Text == "***")
-            {
-                Form3 form3 = new Form3();
-                form3.Show();
-                this.Hide();
-            }
-
-
-            Doctors dc = c.Doctors.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
-
-            Patinets hasta = c.Patches.FirstOrDefault(x => x.nationalityNo.ToString() == textBox1.Text);
-
-            string hashpass = Sha256Converter.ComputeSha256Hash(textBox2.Text);
-
-
-            if (loginManager.Login(hasta, dc)) { this.Hide(); }
-
-
-
+            panel1.Visible = true;
         }
 
+        private void button1_Click(object sender, EventArgs e)  //giriş yap butonu
+        {
+            if (loginManager.Logins(textBox1.Text, textBox2.Text)) { this.Hide(); }
+        }
+
+        int a;
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            int random = rnd.Next(100000, 1000000);
+            if (loginManager.Verification(textBox4.Text, random)) { Confirm(true); a = random; }
+            //label5.Text = a.ToString();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (textBox3.Text == a.ToString())
+            {
+                panel1.Visible = false;
+                Session.MailConfirm = true;
+                NewPassword pass = new NewPassword();
+                pass.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Onay Kodu Hatalı Tekrar Dene");
+            }
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            panel1.Visible = false;
+            Confirm(false);
+        }
         private void button2_Click(object sender, EventArgs e) //kapat
         {
             Application.Exit();
         }
 
-
+        private void Confirm(bool deger)
+        {
+            textBox3.Visible = deger;
+            button3.Visible = deger;
+            label6.Visible = deger;
+        }
     }
 }

@@ -139,6 +139,7 @@
             this.Controls.Add(this.label1);
             this.Name = "NewPassword";
             this.Text = "NewPassword";
+            this.Load += new System.EventHandler(this.NewPassword_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

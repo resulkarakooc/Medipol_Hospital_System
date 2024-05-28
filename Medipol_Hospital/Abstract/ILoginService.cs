@@ -10,8 +10,10 @@ namespace Medipol_Hospital.Abstract
 {
     public interface ILoginService
     {
-        bool Login(Patinets hasta, Doctors dc);
+        bool Logins(string tcno,string password);
         bool RegisterPatient(Patinets patinet);
         bool RegisterDoctor(Doctors doctor);
+
+        bool Verification(string mail, int random);
     }
 }
