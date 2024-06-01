@@ -13,7 +13,7 @@ namespace Medipol_Hospital
         public static string UserName { get; set; }
         public static string UserSurname { get; set; }
         public static string Password { get; set; }
-        public static int WhoIsLoggedIn { get; set; }
+        public static int WhoIsLoggedIn { get; set; } //kim oturum açtı
         public static bool MailConfirm { get; set; } = false;
     }
 }

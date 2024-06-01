@@ -1,16 +1,13 @@
 ﻿using Medipol_Hospital.Concrete;
 using MediSoft.Entities;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Medipol_Hospital
 {
     public partial class Form5 : Form
     {
-        Context c = new Context();
         DoctorManager doctorManager = new DoctorManager();    //doktor manager nesnesi üret
-
         public Form5()
         {
             InitializeComponent();
@@ -26,12 +23,29 @@ namespace Medipol_Hospital
         {
             VisibleFalse();
             groupBox2.Visible = true;
+            
             dataGridView1.DataSource = doctorManager.GetMyPat(Session.sessionId); //gelen listeyi ata
         }
         private void button3_Click(object sender, EventArgs e)
         {
             VisibleFalse();
             groupBox1.Visible = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)  //birini seçtin mi
+            {
+                int selectedRowIndex = dataGridView1.SelectedRows[0].Index; //seçili indexi al
+                int HastaID = Convert.ToInt32(dataGridView1.Rows[selectedRowIndex].Cells["ID"].Value); // o indexteki kişin Id sini al
+                string konu = textBox1.Text;  //yazıları çek
+                string mesaj = textBox4.Text;
+                doctorManager.SendMail(HastaID, konu, mesaj); //mail gönder
+            }
+            else
+            {
+                MessageBox.Show("Lütfen Hasta seçiniz.");
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)  //hasta muayene sonrası reçete hazırlama sayfası
@@ -41,7 +55,8 @@ namespace Medipol_Hospital
                 int selectedRowIndex = dataGridView2.SelectedRows[0].Index; //seçili indexi al
                 int HastaID = Convert.ToInt32(dataGridView2.Rows[selectedRowIndex].Cells["ID"].Value); // o indexteki kişin Id sini al
                 string ilaç = textBox2.Text;  //yazıları çek
-                string tani = textBox1.Text;
+                string tani = comboBox1.Text;
+                
                 string aciklama = textBox3.Text;
 
                 doctorManager.PrescriptionsCreate(HastaID, ilaç, tani, aciklama); //managerdaki reçete oluşturucuya postala
@@ -50,7 +65,6 @@ namespace Medipol_Hospital
             {
                 MessageBox.Show("Lütfen Hasta seçiniz.");
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -82,6 +96,6 @@ namespace Medipol_Hospital
             groupBox2.Visible = false;
         }
 
-
+      
     }
 }

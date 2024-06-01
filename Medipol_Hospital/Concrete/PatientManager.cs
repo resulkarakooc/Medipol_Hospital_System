@@ -1,10 +1,6 @@
 ﻿using Medipol_Hospital.Abstract;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
 using MediSoft.Entities;
 using System.Windows.Forms;
 
@@ -13,10 +9,10 @@ namespace Medipol_Hospital.Concrete
     public class PatientManager : IPatientService
     {
         Context c = new Context();
-
         public void AddNewAppointment(Appointment app)   //randevu oluştur
         {
-            if (!c.Appointments.Any(x => x.appinmentTime == app.appinmentTime && x.doctorID == app.doctorID && x.hourAndSecond == app.hourAndSecond))
+            if (!c.Appointments.Any(x => x.appinmentTime == app.appinmentTime &&   //bu tarihte ve
+            x.doctorID == app.doctorID && x.hourAndSecond == app.hourAndSecond))  // saate randevu var mı?
             {
                 c.Appointments.Add(app);  //ekle
                 c.SaveChanges();         //kaydet

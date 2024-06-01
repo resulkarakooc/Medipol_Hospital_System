@@ -2,13 +2,8 @@
 using Medipol_Hospital.Adapter;
 using Medipol_Hospital.Cryptography;
 using MediSoft.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Medipol_Hospital.Concrete
 {
@@ -16,7 +11,6 @@ namespace Medipol_Hospital.Concrete
     {
         Context c = new Context();
         ICheckedService check = new MernisCheckOfPerson(); //doğrulama hizmeti seç fake ya da Mernis ilerde farklı bir doğrulama hizmeti de gelebilirr
-
 
         public bool Logins(string tcno, string password)
         {
@@ -67,9 +61,6 @@ namespace Medipol_Hospital.Concrete
 
             }
         }
-
-
-
         public bool RegisterDoctor(Doctors doctor)   //doktor kayıt etme methodu
         {
             if (!c.Patches.Any(a => a.nationalityNo == doctor.nationalityNo))   //daha önce kayıt olmuş mu?
@@ -136,14 +127,14 @@ namespace Medipol_Hospital.Concrete
 
             if (dc != null)
             {
-                MailService.MailService.SendEmail(dc.Email, random);
+                MailService.MailService.SendEmail(dc.Email,"E-Posta Onay Kodu",$"Medipol Hastanesi Onay KOdunuz :{random}");
                 Session.WhoIsLoggedIn = 1;        //kısmi oturum aç ama erişim verme
                 Session.sessionId = dc.doctorID;
                 return true;
             }
             else if (hasta != null)
             {
-                MailService.MailService.SendEmail(hasta.Email, random);
+                MailService.MailService.SendEmail(hasta.Email, "E-Posta Onay Kodu", $"Medipol Hastanesi Onay KOdunuz :{random}");
                 Session.WhoIsLoggedIn = 0;
                 Session.sessionId = hasta.pID;
                 return true;

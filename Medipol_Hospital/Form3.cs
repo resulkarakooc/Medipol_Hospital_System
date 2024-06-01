@@ -1,24 +1,19 @@
 ﻿using Medipol_Hospital.Concrete;
-using MediSoft.Entities;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Medipol_Hospital
 {
     public partial class Form3 : Form
     {
-        Context c = new Context();
-        PersonelManager personelManager = new PersonelManager();        //işlemler için personel sınıfıdan nesne üret
-
+        PersonelManager personelManager = new PersonelManager(); //işlemler için personel sınıfıdan nesne üret
         public Form3()
         {
             InitializeComponent();
         }
-
         private void Form3_Load(object sender, EventArgs e)
         {
-            dataGridView3.DataSource = personelManager.GetAllPat();   //verileri dataGride gönder
+            dataGridView3.DataSource = personelManager.GetAllPat();  //verileri dataGride gönder
             VisibleFalse();  //groupboxları kapat
         }
 
@@ -34,7 +29,6 @@ namespace Medipol_Hospital
             groupBox4.Visible = true;
             dataGridView2.DataSource = personelManager.GetDoctorAll(); //doktorların verilerini tabloya ekle 
         }
-
 
         private void button3_Click_1(object sender, EventArgs e)
         {
@@ -85,14 +79,12 @@ namespace Medipol_Hospital
             Form1 form1 = new Form1(); 
             form1.Show();
             this.Close();
-
         }
 
         private void button8_Click(object sender, EventArgs e)  //kapat 
         {
             Application.Exit();
         }
-
         public void VisibleFalse()
         {
             groupBox2.Visible = false;
@@ -100,11 +92,6 @@ namespace Medipol_Hospital
             groupBox6.Visible = false;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-        }
+      
     }
-
-
 }

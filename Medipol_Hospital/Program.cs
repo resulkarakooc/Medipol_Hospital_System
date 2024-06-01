@@ -17,24 +17,15 @@ namespace Medipol_Hospital
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-
-
         }
 
         static void UnhandledExceptionHandler(object sender, UnhandledExceptionEventArgs e)
         {
             Exception ex = (Exception)e.ExceptionObject;
-
-            string errorMessage = ex.ToString();
-
-            // Hata durumunda burası çalışacak
+            string errorMessage = ex.ToString(); 
             MessageBox.Show("Hata oluştu: " + errorMessage);
-            // Hata durumunda burası çalışacak
-           
-            // Hata işleme kodları buraya eklenebilir
-
-            // Uygulamayı durdurabilir veya gerekli diğer işlemleri yapabilirsiniz
-            
+ 
         }
     }
 }
+//Version 1.2.6 Resul Karakoç

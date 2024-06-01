@@ -1,11 +1,8 @@
 ﻿using Medipol_Hospital.Concrete;
-using Medipol_Hospital.Cryptography;
 using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Medipol_Hospital
@@ -15,7 +12,6 @@ namespace Medipol_Hospital
     {
         Context c;
         PatientManager patientManager = new PatientManager(); //nesne türet ve içindeki methotlara eriş
-
         public Form4()
         {
             InitializeComponent();
@@ -36,7 +32,6 @@ namespace Medipol_Hospital
             comboBox1.DataSource = c.Doctors.ToList(); //comboboxa verileri gönder
             comboBox1.DisplayMember = "FullName";
             comboBox1.ValueMember = "doctorID";
-
             VisibleFalse(); 
             groupNewAppointment.Visible = true;
 
@@ -52,13 +47,9 @@ namespace Medipol_Hospital
                 p_ID = Session.sessionId,
                 doctorID = selectdoctor.doctorID,
                 hourAndSecond = dateTimePicker2.Value.Hour.ToString() + "." + dateTimePicker2.Value.Minute
-
             };
-
             patientManager.AddNewAppointment(meet); //managera postala
-
         }
-
 
         private void button4_Click(object sender, EventArgs e) //doktorları listele
         {
@@ -72,12 +63,11 @@ namespace Medipol_Hospital
                 listBox1.Items.Add(x.Name + " " + x.Surname);
             }
         }
-
         private void button2_Click(object sender, EventArgs e) //mevcut randevu listesi
         {
             VisibleFalse();
-            List<Appointment> currnetapp = patientManager.GetCurrentAppt(Session.sessionId);   //method ile randevular getirildi oturumu açık olan hastanın
-            
+            List<Appointment> currnetapp = patientManager.GetCurrentAppt(Session.sessionId);  //method ile randevular
+                                                                                             //getirildi oturumu açık olan hastanın
             dataGridView1.DataSource = currnetapp; //getirilen liste dataGridView'e aktarıldı          
             groupListCurrent.Visible = true;
         }
@@ -87,21 +77,16 @@ namespace Medipol_Hospital
             Form1 form1 = new Form1();
             form1.Show();
             this.Hide();
-
         }
-
         private void button8_Click(object sender, EventArgs e) // Çıkış butonu
         {
             Application.Exit();
         }
-
         private void VisibleFalse()
         {
             groupNewAppointment.Visible = false;
             groupListDoctor.Visible = false;
             groupListCurrent.Visible = false;
         }
-
-      
     }
 }

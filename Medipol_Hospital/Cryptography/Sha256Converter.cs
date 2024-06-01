@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Medipol_Hospital.Cryptography
 {
     public static class Sha256Converter
     {
-        public static string ComputeSha256Hash(string rawData)  //ham veriyi al
+        public static string ComputeSha256Hash(string hamveri)  //ham veriyi al
         {
             // SHA256 oluştur
             using (SHA256 sha256Hash = SHA256.Create())
-            {
-                // ComputeHash - returns byte array
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
-
-                // Convert byte array to a string
+            {         
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(hamveri));
+                
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {

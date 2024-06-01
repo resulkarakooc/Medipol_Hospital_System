@@ -3,13 +3,10 @@ using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Medipol_Hospital.Concrete
 {
-
     public class PersonelManager : IPersoneLService 
     {
         Context c = new Context();
@@ -62,8 +59,6 @@ namespace Medipol_Hospital.Concrete
             c.SaveChanges(); //kaydet
 
             MessageBox.Show($"{sonuc.meet_ID} ID'li randevu silindi ");
-
-            
         }
         public List<Object> GetAllAppointment()  //tüm randevuları getir
         {
@@ -71,7 +66,7 @@ namespace Medipol_Hospital.Concrete
                          join hasta in c.Patches
                          on rnd.p_ID equals hasta.pID
                          join doctor in c.Doctors
-                         on rnd.doctorID equals doctor.doctorID
+             /*LINQ*/    on rnd.doctorID equals doctor.doctorID
                          select new
                          {
                              Randevu_ID = rnd.meet_ID,

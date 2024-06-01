@@ -1,4 +1,5 @@
 ﻿
+
 using MediSoft.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,6 @@ namespace Medipol_Hospital.Abstract
         bool Logins(string tcno,string password);
         bool RegisterPatient(Patinets patinet);
         bool RegisterDoctor(Doctors doctor);
-
         bool Verification(string mail, int random);
     }
 }

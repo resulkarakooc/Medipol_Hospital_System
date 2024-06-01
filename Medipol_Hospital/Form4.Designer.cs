@@ -33,7 +33,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupListDoctor = new System.Windows.Forms.GroupBox();
@@ -56,6 +55,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupListDoctor.SuspendLayout();
@@ -78,29 +78,28 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1009, 136);
+            this.pictureBox1.Location = new System.Drawing.Point(951, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(145, 174);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(248, 173);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(13, 78);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(238, 320);
+            this.groupBox1.Size = new System.Drawing.Size(238, 177);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Randevu İşlemleri";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(6, 188);
+            this.button4.Location = new System.Drawing.Point(6, 125);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(226, 38);
             this.button4.TabIndex = 0;
@@ -108,18 +107,9 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(6, 136);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(226, 38);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Geçmiş Randevularım";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(6, 91);
+            this.button2.Location = new System.Drawing.Point(6, 81);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(226, 38);
             this.button2.TabIndex = 0;
@@ -167,23 +157,22 @@
             this.groupNewAppointment.Controls.Add(this.button5);
             this.groupNewAppointment.Location = new System.Drawing.Point(288, 78);
             this.groupNewAppointment.Name = "groupNewAppointment";
-            this.groupNewAppointment.Size = new System.Drawing.Size(645, 321);
+            this.groupNewAppointment.Size = new System.Drawing.Size(645, 246);
             this.groupNewAppointment.TabIndex = 0;
             this.groupNewAppointment.TabStop = false;
             this.groupNewAppointment.Text = "Yeni Randevu";
-            
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker2.Location = new System.Drawing.Point(149, 147);
+            this.dateTimePicker2.Location = new System.Drawing.Point(149, 125);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(108, 22);
             this.dateTimePicker2.TabIndex = 3;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(149, 93);
+            this.dateTimePicker1.Location = new System.Drawing.Point(149, 81);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(127, 22);
             this.dateTimePicker1.TabIndex = 3;
@@ -191,7 +180,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(44, 147);
+            this.label4.Location = new System.Drawing.Point(44, 125);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 16);
             this.label4.TabIndex = 2;
@@ -200,7 +189,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(44, 93);
+            this.label3.Location = new System.Drawing.Point(44, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 16);
             this.label3.TabIndex = 2;
@@ -225,12 +214,13 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(149, 212);
+            this.button5.BackColor = System.Drawing.Color.LightGreen;
+            this.button5.Location = new System.Drawing.Point(149, 183);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(155, 23);
             this.button5.TabIndex = 0;
             this.button5.Text = "Randevu Oluştur";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // groupListCurrent
@@ -258,7 +248,7 @@
             this.groupBox5.Controls.Add(this.button8);
             this.groupBox5.Controls.Add(this.button7);
             this.groupBox5.Controls.Add(this.button6);
-            this.groupBox5.Location = new System.Drawing.Point(220, 486);
+            this.groupBox5.Location = new System.Drawing.Point(390, 446);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(398, 68);
             this.groupBox5.TabIndex = 5;
@@ -300,7 +290,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(807, 33);
+            this.label5.Location = new System.Drawing.Point(823, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 16);
             this.label5.TabIndex = 6;
@@ -309,7 +299,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(891, 33);
+            this.label6.Location = new System.Drawing.Point(907, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 16);
             this.label6.TabIndex = 6;
@@ -331,16 +321,26 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label8.Location = new System.Drawing.Point(119, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 25);
+            this.label8.Size = new System.Drawing.Size(81, 25);
             this.label8.TabIndex = 8;
-            this.label8.Text = "label8";
+            this.label8.Text = "kullanıcı";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(901, 528);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(298, 16);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "© 2024 T.C. Sağlık Bakanlığı. Tüm hakları saklıdır.";
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(1226, 580);
+            this.ClientSize = new System.Drawing.Size(1226, 570);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupNewAppointment);
@@ -353,7 +353,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupListDoctor);
             this.Name = "Form4";
-            this.Text = "Form4";
+            this.Text = "Hasta Paneli";
             this.Load += new System.EventHandler(this.Form4_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -374,7 +374,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupListDoctor;
@@ -397,5 +396,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
