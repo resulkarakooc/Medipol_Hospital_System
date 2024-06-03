@@ -48,9 +48,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -87,13 +87,15 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(362, 414);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(161, 29);
             this.button1.TabIndex = 4;
             this.button1.Text = "Giriş";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox2
@@ -149,6 +151,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.maskedTextBox2);
             this.panel1.Controls.Add(this.linkLabel3);
             this.panel1.Controls.Add(this.textBox4);
             this.panel1.Controls.Add(this.button4);
@@ -158,10 +161,9 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Location = new System.Drawing.Point(94, -4);
+            this.panel1.Location = new System.Drawing.Point(116, -4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(690, 681);
+            this.panel1.Size = new System.Drawing.Size(690, 661);
             this.panel1.TabIndex = 9;
             // 
             // linkLabel3
@@ -184,22 +186,24 @@
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.button4.Location = new System.Drawing.Point(414, 383);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(119, 23);
+            this.button4.Size = new System.Drawing.Size(142, 28);
             this.button4.TabIndex = 5;
             this.button4.Text = "Gönder";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(414, 437);
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.button3.Location = new System.Drawing.Point(414, 438);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(119, 23);
+            this.button3.Size = new System.Drawing.Size(142, 27);
             this.button3.TabIndex = 5;
             this.button3.Text = "Şifremi Yenile";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label7
@@ -252,14 +256,6 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Şifremi Unuttum";
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(253, 438);
-            this.textBox3.MaxLength = 6;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(143, 22);
-            this.textBox3.TabIndex = 0;
-            // 
             // maskedTextBox1
             // 
             this.maskedTextBox1.Location = new System.Drawing.Point(362, 307);
@@ -275,6 +271,13 @@
             this.label8.Size = new System.Drawing.Size(298, 16);
             this.label8.TabIndex = 13;
             this.label8.Text = "© 2024 T.C. Sağlık Bakanlığı. Tüm hakları saklıdır.";
+            // 
+            // maskedTextBox2
+            // 
+            this.maskedTextBox2.Location = new System.Drawing.Point(253, 438);
+            this.maskedTextBox2.Name = "maskedTextBox2";
+            this.maskedTextBox2.Size = new System.Drawing.Size(143, 22);
+            this.maskedTextBox2.TabIndex = 8;
             // 
             // Form1
             // 
@@ -322,7 +325,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
@@ -331,6 +333,7 @@
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
     }
 }
 

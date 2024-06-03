@@ -169,9 +169,9 @@
             this.groupBox5.Controls.Add(this.button8);
             this.groupBox5.Controls.Add(this.button7);
             this.groupBox5.Controls.Add(this.button6);
-            this.groupBox5.Location = new System.Drawing.Point(413, 569);
+            this.groupBox5.Location = new System.Drawing.Point(423, 571);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(416, 95);
+            this.groupBox5.Size = new System.Drawing.Size(406, 80);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Kullanıcı İşlemleri";
@@ -179,7 +179,7 @@
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.Red;
-            this.button8.Location = new System.Drawing.Point(260, 37);
+            this.button8.Location = new System.Drawing.Point(262, 21);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(138, 45);
             this.button8.TabIndex = 0;
@@ -189,8 +189,8 @@
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button7.Location = new System.Drawing.Point(127, 37);
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
+            this.button7.Location = new System.Drawing.Point(127, 21);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(127, 45);
             this.button7.TabIndex = 0;
@@ -200,8 +200,8 @@
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button6.Location = new System.Drawing.Point(6, 37);
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.button6.Location = new System.Drawing.Point(6, 21);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(115, 45);
             this.button6.TabIndex = 0;

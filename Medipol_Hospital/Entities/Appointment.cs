@@ -11,7 +11,5 @@ namespace MediSoft.Entities
         public int doctorID { get; set; }
         public DateTime appinmentTime { get; set; }
         public string hourAndSecond { get; set; }
-
-
     }
 }

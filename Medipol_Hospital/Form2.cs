@@ -3,6 +3,7 @@ using Medipol_Hospital.Cryptography;
 using MediSoft.Entities;
 using System;
 using System.Diagnostics;
+using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace Medipol_Hospital
@@ -15,61 +16,80 @@ namespace Medipol_Hospital
         {
             InitializeComponent();
         }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            maskedTextBox1.Mask = "00000000000";
+            //maskedTextBox1.Mask = ">LLLLLLLLLLLLLLLLLLLLLLLLLLLLLL";
+            
+
+        }
+
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)  //giriş sayfasına gitmek
         {
-            Form1 form1 = new Form1();   
+            Form1 form1 = new Form1();
             form1.Show();
             this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1 != null && textBox2 != null && textBox3 != null && textBox4 != null && textBox5 != null)  //boş mu diye kontrol ediliyor
+            try
             {
-                string hashpass = Sha256Converter.ComputeSha256Hash(textBox4.Text); /*Kullanıcı Güvenliği için  **Hashleme**/ 
+                string email = textBox6.Text;
+                MailAddress mailAddress = new MailAddress(email);
 
-                if (comboBox1.SelectedIndex == 0) //hasta
-                {
-                    Patinets patient = new Patinets()       //Hasta sınıfından nesne üret 
-                    {                                      //ve bilgileri ata
-                        Email = textBox6.Text,
-                        nationalityNo = textBox1.Text,
-                        Name = textBox2.Text,
-                        Surname = textBox3.Text,
-                        BirthYear = Convert.ToInt32(textBox5.Text),
-                        registerDate = DateTime.Now,
-                        Password = hashpass
-                    };
 
-                    if (loginManager.RegisterPatient(patient)) { this.Hide(); }  //bilgileri kayıt etmek için uygun mu diye gönder 
-                }
-                //Doktor Kayıt
-                else if (comboBox1.SelectedIndex == 1) //doktor
+                if (maskedTextBox1 != null && textBox2 != null && textBox3 != null && textBox4 != null && textBox5 != null)  //boş mu diye kontrol ediliyor
                 {
-                    Doctors doctor = new Doctors()
+                    string hashpass = Sha256Converter.ComputeSha256Hash(textBox4.Text); /*Kullanıcı Güvenliği için  **Hashleme**/
+
+                    if (comboBox1.SelectedIndex == 0) //hasta
                     {
-                        nationalityNo = textBox1.Text,
-                        Name = textBox2.Text,
-                        Surname = textBox3.Text,
-                        BirthYear = Convert.ToInt32(textBox5.Text),
-                        Email = textBox6.Text,
-                        Password = hashpass
-                    };
-                    if (loginManager.RegisterDoctor(doctor)) { this.Hide(); } 
+                        Patinets patient = new Patinets()       //Hasta sınıfından nesne üret 
+                        {                                      //ve bilgileri ata
+                            Email = textBox6.Text,
+                            nationalityNo = maskedTextBox1.Text,
+                            Name = textBox2.Text,
+                            Surname = textBox3.Text,
+                            BirthYear = Convert.ToInt32(textBox5.Text),
+                            registerDate = DateTime.Now,
+                            Password = hashpass
+                        };
+
+                        if (loginManager.RegisterPatient(patient)) { this.Hide(); }  //bilgileri kayıt etmek için uygun mu diye gönder 
+                    }
+                    //Doktor Kayıt
+                    else if (comboBox1.SelectedIndex == 1) //doktor
+                    {
+                        Doctors doctor = new Doctors()
+                        {
+                            nationalityNo = maskedTextBox1.Text,
+                            Name = textBox2.Text,
+                            Surname = textBox3.Text,
+                            BirthYear = Convert.ToInt32(textBox5.Text),
+                            Email = textBox6.Text,
+                            Password = hashpass
+                        };
+                        if (loginManager.RegisterDoctor(doctor)) { this.Hide(); }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tüm Alanları Doldurun Lütfen");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Tüm Alanları Doldurun Lütfen");
+                    MessageBox.Show("Tüm alanları olması gerektiği gibi doldurun lütfen \n   -Türkiye Cumhuriyeti Sağlık Bakanlığı Medipol Hastanesi ");
                 }
+
             }
-            else
+            catch (FormatException)
             {
-                MessageBox.Show("Tüm Alanları Doldurun Lütfen");
+                MessageBox.Show("Girilen metin bir geçersiz eposta adresidir.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private void button2_Click(object sender, EventArgs e) // çıkış
-        {
-            Application.Exit();
+
+
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)  //iletişim için hızlı e-posta
@@ -82,6 +102,12 @@ namespace Medipol_Hospital
             // Varsayılan e-posta istemcisini aç
             Process.Start(mail);
         }
+        private void button2_Click(object sender, EventArgs e) // çıkış
+        {
+            Application.Exit();
+        }
+
+       
     }
 
 }

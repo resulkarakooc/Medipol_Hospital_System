@@ -23,7 +23,6 @@ namespace Medipol_Hospital
         {
             VisibleFalse();
             groupBox2.Visible = true;
-            
             dataGridView1.DataSource = doctorManager.GetMyPat(Session.sessionId); //gelen listeyi ata
         }
         private void button3_Click(object sender, EventArgs e)

@@ -12,14 +12,9 @@ namespace MediSoft.Entities
         public int BirthYear { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-
-
-
         public string FullName
         {
             get { return $"{Name} {Surname}"; }
         }
-
-
     }
 }
